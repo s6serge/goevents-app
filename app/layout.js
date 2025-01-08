@@ -3,7 +3,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
     title: 'GoEvents-app',
-    description: 'Site Web d une salle de conference qui affiche les different evenement',
+    description: 'Site Web d une salle de conference qui affiche les differents evenemens',
 };
 export default function RootLayout({ children }) {
     return (
