@@ -1,3 +1,4 @@
+Equipe : Jergi Makhoul et Serge Alain Tchuenkam Kamdem
 Description du projet : GoEvents
 GoEvents est une application web moderne conçue pour afficher le programme détaillé d'événements tels que des festivals, des conférences ou des expositions. Développée avec React et Next.js, GoEvents offre une interface utilisateur claire et intuitive pour consulter les horaires et les activités organisées jour par jour.
 
