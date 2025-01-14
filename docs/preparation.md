@@ -1,3 +1,9 @@
+### Groupe de projet : 
+- Nom de l'équipe :
+    - Serge Kamdem 
+    - Jergi Makhoul 
+    - Mohamed Amine Choumoul
+
 # Projet : Site Web pour une Salle de Conférence
 
 ## Description
@@ -46,13 +52,10 @@ Ce projet consiste à développer un site web moderne et responsive pour une sal
    - Tester les fonctionnalités sur différents appareils.
    - Déployer le site sur une plateforme comme Vercel.
 
-## Liens de référence
-
-Voici des sites similaires qui inspireront notre conception et fonctionnalité :
-- [Meetup](https://www.meetup.com) : Design clair pour l'affichage des événements.
-- [Eventbrite](https://www.eventbrite.com) : Interface utilisateur simple et navigation intuitive.
-- [Dribbble](https://dribbble.com/search/conference) : Idées de design pour des pages d'événements.
-- [Material Design](https://material.io/design) : Guide des bonnes pratiques de design.
+##  Gestion des types d'images
+ - Nous utiliserons des formats d'images modernes tels que AVIF et WebP.
+ - Nous utiliserons des outils comme 'Squoosh' pour convertir les images     entre différents formats, y compris AVIF et WebP, et de comparer leur qualité et leur taille.
+ - [Squoosh](https://squoosh.app/) : outil de compression d'image de Google
 
 ## Palette de couleurs
 
@@ -65,9 +68,15 @@ Nous avons choisi une palette de couleurs harmonieuse pour transmettre un sentim
 - **Texte secondaire** : Gris clair (#9CA3AF)
 - **Fond** : Blanc (#FFFFFF)
 - [couleurs](https://coolors.co/palettes/trending) : site web pour les couleurs
+- [ContrasteColor](https://dequeuniversity.com/rules/axe/4.8/color-contrast) : site web pour vérifier le contraste des couleurs utilisees
 
-### Auteur(s) : 
-- **Nom de l'équipe ou développeur** : Serge Kamdem && Jergi Makhoul
+## Liens de référence
+
+Voici des sites similaires qui inspireront notre conception et fonctionnalité :
+- [Meetup](https://www.meetup.com) : Design clair pour l'affichage des événements.
+- [Eventbrite](https://www.eventbrite.com) : Interface utilisateur simple et navigation intuitive.
+- [Dribbble](https://dribbble.com/search/conference) : Idées de design pour des pages d'événements.
+- [Material Design](https://material.io/design) : Guide des bonnes pratiques de design.
 
 Ce fichier documente la phase de préparation et servira de base pour le développement du site.
  
