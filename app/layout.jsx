@@ -1,17 +1,24 @@
 import Header from '@/components/Header';
-
 import { Inter } from 'next/font/google';
 import './globals.css';
-const inter = Inter({ subsets: ['latin'] });
-export const metadata = {
-    title: 'GoEvents-app',
-    description: 'Site Web d une salle de conference qui affiche les differents evenemens',
-};
-export default function RootLayout({ children }) {
-    return (
-        <html lang='en'>
-        <body className={inter.className}>{children}</body>
-        </html>
-    );
-}
 
+// Initialize the Inter font with Latin subset
+const inter = Inter({ subsets: ['latin'] });
+
+// Metadata for the application
+export const metadata = {
+  title: 'GoEvents-app',
+  description: 'Site Web d\'une salle de conférence qui affiche les différents événements',
+};
+
+// Root layout component
+export default function RootLayout({ children }) {
+  return (
+    <html lang="fr"> {/* Changed to 'fr' for French language support */}
+      <body className={inter.className}>
+        <Header /> {/* Include the Header component */}
+        <main>{children}</main> {/* Render nested content */}
+      </body>
+    </html>
+  );
+}
