@@ -1,31 +1,82 @@
-Equipe : Jergi Makhoul et Serge Alain Tchuenkam Kamdem
-Description du projet : GoEvents
-GoEvents est une application web moderne conçue pour afficher le programme détaillé d'événements tels que des festivals, des conférences ou des expositions. Développée avec React et Next.js, GoEvents offre une interface utilisateur claire et intuitive pour consulter les horaires et les activités organisées jour par jour.
+### Groupe de projet : 
+- Nom de l'équipe :
+    - Serge Kamdem 
+    - Jergi Makhoul 
+    - Mohamed Amine Choumoul
 
-Objectifs principaux :
-Présentation claire des horaires :
-Les utilisateurs peuvent consulter le programme complet d'un événement, divisé par journées (Jour 1, Jour 2, etc.), avec des horaires précis pour chaque activité ou performance.
+# Projet : Site Web pour une Salle de Conférence
 
-Navigation intuitive :
-L'interface permet une navigation fluide entre les différents jours, avec des filtres pour afficher les activités par catégorie, lieu ou type d'événement.
+## Description
 
-Compatibilité et performance :
-Grâce à Next.js, le site sera rapide, performant et optimisé pour le SEO, offrant une expérience utilisateur de qualité sur tous les appareils.
+Ce projet consiste à développer un site web moderne et responsive pour une salle de conférence. L'objectif principal est de fournir une plateforme simple et intuitive permettant de visualiser les différents événements organisés dans la salle. Le site doit répondre aux besoins des visiteurs cherchant des informations sur les événements et offrir une expérience utilisateur agréable.
 
-Design moderne et responsive :
-Le site adoptera un design épuré, adapté aux écrans de toutes tailles, garantissant une expérience agréable aussi bien sur mobile que sur desktop.
+## Fonctionnalités principales
 
-Fonctionnalités principales :
-Affichage du programme jour par jour.
-Détails sur chaque activité (heure, lieu, description, intervenants ou artistes).
-Recherche et filtrage par type d’activité ou catégorie.
-Possibilité d’ajouter l’événement à un calendrier personnel via un lien iCal.
-Technologies utilisées :
-React : Pour construire l'interface utilisateur dynamique et réactive.
-Next.js : Pour le rendu côté serveur, l'optimisation des performances, et la facilité de navigation entre les pages.
+1. **Page d'accueil** :
+   - **Section principale** : Une présentation claire de la salle de conférence.  
+   - **Sections secondaires** : 
+     - Liste des prochains événements avec un aperçu.  
+     - Description de la salle et ses équipements.  
 
-References :
+2. **Page des événements**  
+   - Liste filtrable et triable des événements.
+   - Détails d'un événement (titre, description, date, heure, intervenants, image).     
 
-https://www.nicecarnaval.com/en/2025-edition/official-programme/
+3. **Navigation intuitive** :
+   - Accès rapide aux différentes sections du site (calendrier, contact, événements).
 
-https://noel.strasbourg.eu/agenda
+4. **Responsive Design** :
+   - Compatible avec les ordinateurs, tablettes, et smartphones.
+
+## Objectifs du projet
+
+- Créer une interface utilisateur moderne et professionnelle.
+- Permettre aux visiteurs de trouver rapidement des informations sur les événements.
+- Optimiser le site pour une navigation fluide et rapide.
+
+
+## Étapes de préparation
+
+1. **Analyse des besoins** :
+   - Identifier les fonctionnalités essentielles.
+   - Définir les exigences des utilisateurs.
+
+2. **Conception de l'interface utilisateur** :
+   - Créer des maquettes et wireframes.
+
+3. **Développement** :
+   - Mettre en place l'architecture du projet avec Next.js.
+   - Développer les pages principales.
+
+4. **Test et déploiement** :
+   - Tester les fonctionnalités sur différents appareils.
+   - Déployer le site sur une plateforme comme Vercel.
+
+##  Gestion des types d'images
+ - Nous utiliserons des formats d'images modernes tels que AVIF et WebP.
+ - Nous utiliserons des outils comme 'Squoosh' pour convertir les images     entre différents formats, y compris AVIF et WebP, et de comparer leur qualité et leur taille.
+ - [Squoosh](https://squoosh.app/) : outil de compression d'image de Google
+
+## Palette de couleurs
+
+Nous avons choisi une palette de couleurs harmonieuse pour transmettre un sentiment de professionnalisme et de modernité :
+
+- **Couleur primaire** : Bleu marine (#1E3A8A)
+- **Couleur secondaire** : Bleu clair (#3B82F6)
+- **Accent** : Orange (#F59E0B)
+- **Texte principal** : Gris foncé (#374151)
+- **Texte secondaire** : Gris clair (#9CA3AF)
+- **Fond** : Blanc (#FFFFFF)
+- [couleurs](https://coolors.co/palettes/trending) : site web pour les couleurs
+- [ContrasteColor](https://dequeuniversity.com/rules/axe/4.8/color-contrast) : site web pour vérifier le contraste des couleurs utilisees
+
+## Liens de référence
+
+Voici des sites similaires qui inspireront notre conception et fonctionnalité :
+- [Meetup](https://www.meetup.com) : Design clair pour l'affichage des événements.
+- [Eventbrite](https://www.eventbrite.com) : Interface utilisateur simple et navigation intuitive.
+- [Dribbble](https://dribbble.com/search/conference) : Idées de design pour des pages d'événements.
+- [Material Design](https://material.io/design) : Guide des bonnes pratiques de design.
+
+Ce fichier documente la phase de préparation et servira de base pour le développement du site.
+ 
