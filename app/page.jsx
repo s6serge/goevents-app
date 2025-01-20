@@ -1,24 +1,14 @@
-import Header from '@/components/Header';
-
-
-import Image from 'next/image';
-import styles from './page.module.css';
-
-export default function RootLayout({children}) {
+export default function Home() {
     return (
-        <html lang='en'>
-
-        <main className={styles.main}>
-            
-        <Header/>
-            <div className={styles.welcome}>
-            Soyez la bienvenue sur GoEvents-app
-             </div>
-
-            
+        <main className="flex flex-col items-center justify-center h-full">
+            <div className="text-center space-y-4">
+                <h1 className="text-2xl md:text-4xl font-bold text-primary">
+                    Soyez la bienvenue sur GoEvents-app
+                </h1>
+                <p className="text-sm md:text-base text-textSecondary">
+                    Explore upcoming events, conferences, and festivals.
+                </p>
+            </div>
         </main>
-
-        </html>
-      
     );
 }
