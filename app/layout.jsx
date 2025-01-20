@@ -1,4 +1,7 @@
+// app/layout.jsx
 import Header from '@/components/Header';
+import Footer from '@/components/Footer'; // Corrected import path
+import Main from '@/components/Main';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -14,10 +17,11 @@ export const metadata = {
 // Root layout component
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr"> {/* Changed to 'fr' for French language support */}
-      <body className={inter.className}>
+    <html lang="fr">
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
         <Header /> {/* Include the Header component */}
-        <main>{children}</main> {/* Render nested content */}
+        <Main>{children}</Main> {/* Use the Main component to wrap children */}
+        <Footer /> {/* Include the Footer component */}
       </body>
     </html>
   );
