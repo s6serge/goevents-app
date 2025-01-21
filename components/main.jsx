@@ -1,249 +1,83 @@
-<<<<<<< HEAD
-"use client"; // This makes the component work on the client side
+"use client";
 
 import { useState, useEffect } from 'react';
-import Particles from '@tsparticles/react'; // For the cool particle animation
-import { loadSlim } from '@tsparticles/slim'; // Updated import
+import Particles from '@tsparticles/react';
+import { loadSlim } from '@tsparticles/slim';
 
 export default function Main({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+    const toggleDarkMode = () => {
+        setIsDarkMode((prevMode) => !prevMode);
+    };
 
-  // Apply dark mode class to the body
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
-  }, [isDarkMode]);
+    useEffect(() => {
+        if (isDarkMode) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    }, [isDarkMode]);
 
-  // Initialize particles
-  const particlesInit = async (engine) => {
-    await loadSlim(engine); // Updated function
-  };
+    const particlesInit = async (engine) => {
+        await loadSlim(engine);
+    };
 
-  return (
-    <main className={`flex-grow p-4 ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800 text-white' : 'bg-gradient-to-b from-blue-100 to-white text-black'}`}>
-      {/* Particle Animation */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          background: {
-            color: {
-              value: isDarkMode ? '#1a1a1a' : '#ffffff',
-            },
-          },
-          fpsLimit: 60,
-          interactivity: {
-            events: {
-              onClick: {
-                enable: true,
-                mode: 'push',
-              },
-              onHover: {
-                enable: true,
-                mode: 'repulse',
-              },
-            },
-            modes: {
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: isDarkMode ? '#ffffff' : '#000000',
-            },
-            links: {
-              color: isDarkMode ? '#ffffff' : '#000000',
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: 'none',
-              enable: true,
-              outModes: {
-                default: 'bounce',
-              },
-              random: false,
-              speed: 2,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: 'circle',
-            },
-            size: {
-              value: { min: 1, max: 5 },
-            },
-          },
-          detectRetina: true,
-        }}
-      />
+    return (
+        <main
+            className={`relative flex flex-col items-center justify-center min-h-[70vh] ${
+                isDarkMode
+                    ? 'bg-gradient-to-b from-gray-900 to-gray-800 text-white'
+                    : 'bg-gradient-to-b from-blue-100 to-white text-black'
+            }`}
+        >
+            {/* Particles Background */}
+            <Particles
+                id="tsparticles"
+                init={particlesInit}
+                options={{
+                    background: {
+                        color: { value: isDarkMode ? '#1a1a1a' : '#ffffff' },
+                    },
+                    particles: {
+                        color: { value: isDarkMode ? '#ffffff' : '#000000' },
+                        links: {
+                            color: isDarkMode ? '#ffffff' : '#000000',
+                            enable: true,
+                        },
+                        move: { enable: true },
+                    },
+                }}
+            />
 
-      {/* Dark Mode Toggle Button */}
-      <button
-        onClick={toggleDarkMode}
-        className="fixed bottom-4 right-4 p-2 bg-blue-500 text-white rounded-full shadow-lg z-50"
-        aria-label="Toggle Dark Mode"
-      >
-        {isDarkMode ? '🌞' : '🌙'}
-      </button>
+            {/* Floating Text */}
+            <div className="absolute top-1/2 transform -translate-y-1/2 text-center z-10">
+                <h1 className="text-3xl md:text-5xl font-bold animate-float">
+                    Soyez la bienvenue sur GoEvents-app
+                </h1>
+                <p className="mt-4 text-lg md:text-xl animate-float">
+                    Explore upcoming events, conferences, and festivals.
+                </p>
+                <button
+                    className="mt-6 px-6 py-3 bg-blue-500 text-white font-bold text-lg rounded-lg shadow-lg hover:bg-blue-600 transition-colors duration-300 animate-float"
+                    onClick={() => alert("Voir les Événements clicked!")}
+                >
+                    Voir les Événements
+                </button>
+            </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto max-w-4xl relative z-10">
-        {children}
-      </div>
-    </main>
-  );
+            {/* Dark Mode Toggle Button */}
+            <button
+                onClick={toggleDarkMode}
+                className="fixed bottom-4 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50 transition-transform hover:scale-105 focus:ring focus:ring-blue-300"
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+                {isDarkMode ? '🌞' : '🌙'}
+            </button>
+
+            {/* Main Content */}
+            <div className="container mx-auto max-w-4xl relative z-10 mt-8">{children}</div>
+        </main>
+    );
 }
-=======
-"use client"; // This makes the component work on the client side
-
-import { useState, useEffect } from 'react';
-import Particles from '@tsparticles/react'; // For the cool particle animation
-import { loadSlim } from '@tsparticles/slim'; // Updated import
-
-export default function Main({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  // Apply dark mode class to the body
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  // Initialize particles
-  const particlesInit = async (engine) => {
-    await loadSlim(engine); // Updated function
-  };
-
-  return (
-    <main className={`flex-grow p-4 ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800 text-white' : 'bg-gradient-to-b from-blue-100 to-white text-black'}`}>
-      {/* Particle Animation */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          background: {
-            color: {
-              value: isDarkMode ? '#1a1a1a' : '#ffffff',
-            },
-          },
-          fpsLimit: 60,
-          interactivity: {
-            events: {
-              onClick: {
-                enable: true,
-                mode: 'push',
-              },
-              onHover: {
-                enable: true,
-                mode: 'repulse',
-              },
-            },
-            modes: {
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: isDarkMode ? '#ffffff' : '#000000',
-            },
-            links: {
-              color: isDarkMode ? '#ffffff' : '#000000',
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: 'none',
-              enable: true,
-              outModes: {
-                default: 'bounce',
-              },
-              random: false,
-              speed: 2,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: 'circle',
-            },
-            size: {
-              value: { min: 1, max: 5 },
-            },
-          },
-          detectRetina: true,
-        }}
-      />
-
-      {/* Dark Mode Toggle Button */}
-      <button
-        onClick={toggleDarkMode}
-        className="fixed bottom-4 right-4 p-2 bg-blue-500 text-white rounded-full shadow-lg z-50"
-        aria-label="Toggle Dark Mode"
-      >
-        {isDarkMode ? '🌞' : '🌙'}
-      </button>
-
-      {/* Main Content */}
-      <div className="container mx-auto max-w-4xl relative z-10">
-        {children}
-      </div>
-    </main>
-  );
-}
->>>>>>> e24848a9991228c9f38206e7d495a08aef2e6bf2

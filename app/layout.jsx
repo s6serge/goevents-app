@@ -13,9 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className="h-full overflow-x-hidden">
-            <body className={`${inter.className} h-full flex flex-col overflow-x-hidden`}>
+            <body className={`${inter.className} h-full flex flex-col`}>
                 <Header />
-                <main className="flex-grow w-full max-w-7xl mx-auto px-4 md:px-6">{children}</main>
+                <div className="flex-grow flex-shrink-0 relative z-0">{children}</div> {/* Ensures content doesn't overlap */}
                 <Footer />
             </body>
         </html>
