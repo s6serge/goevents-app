@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Particles from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Main({ children }) {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -11,23 +13,19 @@ export default function Main({ children }) {
         setIsDarkMode((prevMode) => !prevMode);
     };
 
-    useEffect(() => {
-        if (isDarkMode) {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
-        }
-    }, [isDarkMode]);
-
     const particlesInit = async (engine) => {
         await loadSlim(engine);
+    };
+
+    const handleEventClick = () => {
+        toast.info("Vous avez cliqué sur 'Voir les Événements'.");
     };
 
     return (
         <main
             className={`relative flex flex-col items-center justify-center min-h-[70vh] ${
                 isDarkMode
-                    ? 'bg-gradient-to-b from-gray-900 to-gray-800 text-white'
+                    ? 'dark bg-gradient-to-b from-gray-900 to-gray-800 text-white'
                     : 'bg-gradient-to-b from-blue-100 to-white text-black'
             }`}
         >
@@ -61,7 +59,7 @@ export default function Main({ children }) {
                 </p>
                 <button
                     className="mt-6 px-6 py-3 bg-blue-500 text-white font-bold text-lg rounded-lg shadow-lg hover:bg-blue-600 transition-colors duration-300 animate-float"
-                    onClick={() => alert("Voir les Événements clicked!")}
+                    onClick={handleEventClick}
                 >
                     Voir les Événements
                 </button>
@@ -76,6 +74,9 @@ export default function Main({ children }) {
             >
                 {isDarkMode ? '🌞' : '🌙'}
             </button>
+
+            {/* Toast Notifications */}
+            <ToastContainer position="top-center" autoClose={3000} />
 
             {/* Main Content */}
             <div className="container mx-auto max-w-4xl relative z-10 mt-8">{children}</div>
