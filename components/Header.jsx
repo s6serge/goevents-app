@@ -30,14 +30,14 @@ export default function Header() {
 
         {/* Navigation Links */}
         <ul
-          className={`absolute md:static top-full right-0 bg-[#1E3A8A] shadow-lg w-[70vw] flex flex-col gap-4 py-4 px-4 md:w-auto md:flex md:flex-row md:bg-transparent md:shadow-none md:gap-8 md:py-0 md:px-0 ${
+          className={`absolute md:static top-full right-0 bg-[#1E3A8A] shadow-lg w-[75vw] max-w-[350px] flex flex-col gap-3 py-4 px-3 md:w-auto md:flex md:flex-row md:bg-transparent md:shadow-none md:gap-8 md:py-0 md:px-0 ${
             menuOpen ? "block" : "hidden"
           }`}
         >
           <li>
             <a
               href="#"
-              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md"
+              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md whitespace-nowrap"
             >
               Accueil
             </a>
@@ -45,7 +45,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md"
+              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md whitespace-nowrap"
             >
               Agenda
             </a>
@@ -53,7 +53,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md"
+              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md whitespace-nowrap"
             >
               Contact
             </a>
@@ -61,7 +61,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md"
+              className="hover:bg-[#D97706] hover:text-[#FFFFFF] transition-colors duration-300 px-3 py-2 rounded-md whitespace-nowrap"
             >
               Espace Client
             </a>

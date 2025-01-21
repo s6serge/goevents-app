@@ -19,7 +19,7 @@ const Footer = () => {
             <li>
               <a
                 href="/about"
-                className="hover:bg-[#D97706] hover:text-white transition-colors duration-300 px-2 py-1 rounded"
+                className="hover:underline hover:text-white transition-colors duration-300"
               >
                 À propos
               </a>
@@ -27,7 +27,7 @@ const Footer = () => {
             <li>
               <a
                 href="/events"
-                className="hover:bg-[#D97706] hover:text-white transition-colors duration-300 px-2 py-1 rounded"
+                className="hover:underline hover:text-white transition-colors duration-300"
               >
                 Événements
               </a>
@@ -35,7 +35,7 @@ const Footer = () => {
             <li>
               <a
                 href="/contact"
-                className="hover:bg-[#D97706] hover:text-white transition-colors duration-300 px-2 py-1 rounded"
+                className="hover:underline hover:text-white transition-colors duration-300"
               >
                 Contact
               </a>
@@ -43,7 +43,7 @@ const Footer = () => {
             <li>
               <a
                 href="/faq"
-                className="hover:bg-[#D97706] hover:text-white transition-colors duration-300 px-2 py-1 rounded"
+                className="hover:underline hover:text-white transition-colors duration-300"
               >
                 FAQ
               </a>
@@ -59,7 +59,7 @@ const Footer = () => {
               Email :{" "}
               <a
                 href="mailto:support@goevents.com"
-                className="hover:bg-[#D97706] hover:text-white transition-colors duration-300 px-2 py-1 rounded"
+                className="hover:underline hover:text-white transition-colors duration-300"
               >
                 sup@goevents.com
               </a>
@@ -68,7 +68,7 @@ const Footer = () => {
               Téléphone :{" "}
               <a
                 href="tel:+123456789"
-                className="hover:bg-[#D97706] hover:text-white transition-colors duration-300 px-2 py-1 rounded"
+                className="hover:underline hover:text-white transition-colors duration-300"
               >
                 +1 234 567 89
               </a>
@@ -85,7 +85,7 @@ const Footer = () => {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white text-xl hover:bg-[#D97706] hover:text-[#1E3A8A] transition-colors duration-300 px-2 py-1 rounded"
+              className="text-white text-xl hover:underline hover:text-white transition-colors duration-300"
             >
               <FaFacebook />
             </a>
@@ -93,7 +93,7 @@ const Footer = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white text-xl hover:bg-[#D97706] hover:text-[#1E3A8A] transition-colors duration-300 px-2 py-1 rounded"
+              className="text-white text-xl hover:underline hover:text-white transition-colors duration-300"
             >
               <FaInstagram />
             </a>
@@ -101,7 +101,7 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white text-xl hover:bg-[#D97706] hover:text-[#1E3A8A] transition-colors duration-300 px-2 py-1 rounded"
+              className="text-white text-xl hover:underline hover:text-white transition-colors duration-300"
             >
               <FaTwitter />
             </a>
