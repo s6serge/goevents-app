@@ -48,6 +48,7 @@ export default function Main({ children }) {
                         move: { enable: true },
                     },
                 }}
+                className="absolute inset-0 -z-10"
             />
 
             {/* Floating Text */}
