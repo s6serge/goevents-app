@@ -8,7 +8,18 @@ export default {
   theme: {
     extend: {
       colors: {
+<<<<<<< HEAD
         
+=======
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        
+        secondary: '#3B82F6',
+        accent: '#F59E0B',
+        textPrimary: '#374151',
+        textSecondary: '#9CA3AF',
+        background: '#FFFFFF'
+>>>>>>> e3ca7d7 (Correction apporter sur le header et le footer)
       },
     },
   },

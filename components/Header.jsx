@@ -1,10 +1,16 @@
 "use client";
 
+<<<<<<< HEAD
 import { TfiMenuAlt } from "react-icons/tfi";
-import Image from "next/image";
-import React, { useState } from "react";
-import logo from "@/public/photo/logodusite.webp";
+=======
 
+>>>>>>> e3ca7d7 (Correction apporter sur le header et le footer)
+import Image from "next/image";
+import React from "react"; // Importation nécessaire pour utiliser JSX
+import logo from "@/public/photo/logodusite.webp";
+import MenuNav from "./MenuNav";
+
+<<<<<<< HEAD
 const navLinks = [
   { href: "#", label: "Accueil" },
   { href: "#", label: "Agenda" },
@@ -15,17 +21,31 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+=======
+export default function Header({ setPage }) {
+>>>>>>> e3ca7d7 (Correction apporter sur le header et le footer)
   return (
     <header className="bg-[#1E3A8A] text-white py-6 md:py-8 relative z-50">
-      <nav className="container mx-auto flex items-center justify-between px-4">
+      <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo and Title */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          {/* Logo */}
           <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center overflow-hidden">
-            <Image src={logo} alt="Logo site gestion des événements" width={50} height={50} />
+            <Image
+              src={logo}
+              alt="Logo site gestion des événements"
+              width={50}
+              height={50}
+            />
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold text-[#D97706]">GO Event</h1>
+
+          {/* Title */}
+          <h1 className="text-2xl md:text-3xl font-bold text-[#D97706]">
+            GO Event
+          </h1>
         </div>
 
+<<<<<<< HEAD
         {/* Hamburger Menu Icon */}
         <div className="md:hidden">
           <button
@@ -55,6 +75,13 @@ export default function Header() {
           ))}
         </ul>
       </nav>
+=======
+        
+        {/* Navigation Menu */}
+        <MenuNav setPage={setPage} />
+      </div>
+>>>>>>> e3ca7d7 (Correction apporter sur le header et le footer)
     </header>
   );
 }
+

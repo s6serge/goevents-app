@@ -49,9 +49,25 @@ export default function Main({ children }) {
                 className="absolute inset-0 -z-10"
             />
 
+<<<<<<< HEAD
             {/* Floating Text */}
             <div className="absolute top-1/2 transform -translate-y-1/2 text-center z-10">
                 <h1 className="text-3xl md:text-5xl font-bold animate-float">
+=======
+            {/* Texte flottant et bouton */}
+            <div className="absolute top-1/2 transform -translate-y-1/2 text-center z-20 w-full h-full flex flex-col items-center justify-center">
+                {/* Image en arrière-plan couvrant toute la section */}
+                <Image
+                    src={logo}
+                    alt="Image d'arrière-plan"
+                    layout="fill" // L'image couvre toute la page
+                    objectFit="cover" // L'image couvre tout l'espace sans se déformer
+                    quality={100} // Qualité de l'image (optionnel, mais peut être ajustée)
+                />
+
+                {/* Titre principal */}
+                <h1 className="text-3xl md:text-5xl font-bold text-yellow-200 animate-float">
+>>>>>>> e3ca7d7 (Correction apporter sur le header et le footer)
                     Soyez la bienvenue sur GoEvents-app
                 </h1>
                 <p className="mt-4 text-lg md:text-xl animate-float">
