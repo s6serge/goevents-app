@@ -5,7 +5,7 @@
       "date": "2025-02-15",
       "time": "10:00",
       "description": "Rejoignez-nous pour une conférence captivante sur les dernières avancées de l'intelligence artificielle et ses applications dans différents secteurs.",
-      "image": "https://example.com/images/ai_conference.jpg",
+      "image": "./photo/ai.webp",
       "location": "Salle de conférence ABC, 123 Rue de l'Innovation, Paris, France"
     },
     {
@@ -14,7 +14,7 @@
       "date": "2025-02-17",
       "time": "14:00",
       "description": "Un atelier pratique où vous apprendrez les bases du développement web, du HTML au JavaScript, avec des experts du secteur.",
-      "image": "https://example.com/images/web_dev_workshop.jpg",
+      "image": "./photo/web.webp",
       "location": "Bâtiment TechHub, 56 Rue des Startups, Lyon, France"
     },
     {
@@ -23,7 +23,7 @@
       "date": "2025-02-20",
       "time": "09:00",
       "description": "Découvrez des techniques éprouvées pour gérer le stress au quotidien et améliorer votre bien-être mental et physique.",
-      "image": "https://example.com/images/stress_management.jpg",
+      "image": "./photo/stress.webp",
       "location": "Centre de Bien-être Zen, 14 Rue du Calme, Marseille, France"
     },
     {
@@ -32,7 +32,7 @@
       "date": "2025-02-22",
       "time": "16:00",
       "description": "Des experts discuteront des enjeux de la transition énergétique, des énergies renouvelables et des solutions pour un avenir plus vert.",
-      "image": "https://example.com/images/energy_transition.jpg",
+      "image": "./photo/energie.webp",
       "location": "Salle de conférence GreenTech, 89 Avenue du Développement Durable, Bordeaux, France"
     },
     {
@@ -41,7 +41,7 @@
       "date": "2025-03-01",
       "time": "11:00",
       "description": "Apprenez les dernières tendances du marketing digital et comment les appliquer pour augmenter la visibilité de votre entreprise.",
-      "image": "https://example.com/images/digital_marketing.jpg",
+      "image": "./photo/marketing.webp",
       "location": "En ligne (Zoom)"
     },
     {
@@ -50,7 +50,7 @@
       "date": "2025-03-05",
       "time": "10:00",
       "description": "Venez rencontrer des recruteurs et découvrir des opportunités d'emploi dans divers secteurs d'activité.",
-      "image": "https://example.com/images/job_fair.jpg",
+      "image": "",
       "location": "Parc des Expositions, Hall A, 45 Boulevard des Salons, Lille, France"
     },
     {
@@ -59,7 +59,7 @@
       "date": "2025-03-10",
       "time": "15:00",
       "description": "Un cours intensif pour améliorer vos compétences en photographie numérique et capturer des moments inoubliables.",
-      "image": "https://example.com/images/photography_masterclass.jpg",
+      "image": "",
       "location": "Studio Photo Pro, 28 Rue des Artistes, Paris, France"
     },
     {
@@ -68,7 +68,7 @@
       "date": "2025-03-12",
       "time": "14:00",
       "description": "Assistez à une conférence informative sur les risques liés à la cybersécurité et les meilleures pratiques pour protéger vos données personnelles et professionnelles.",
-      "image": "https://example.com/images/cybersecurity_conference.jpg",
+      "image": "",
       "location": "Centre CyberTech, 67 Rue des Innovateurs, Nice, France"
     },
     {
@@ -77,7 +77,7 @@
       "date": "2025-03-14",
       "time": "17:00",
       "description": "Venez découvrir les œuvres de jeunes artistes locaux dans cette exposition mettant en avant la créativité contemporaine.",
-      "image": "https://example.com/images/art_exhibition.jpg",
+      "image": "",
       "location": "Galerie des Artistes, 120 Boulevard de la Culture, Lyon, France"
     },
     {
@@ -86,7 +86,7 @@
       "date": "2025-03-17",
       "time": "09:00",
       "description": "Participez à un hackathon où vous aurez l'occasion de travailler sur des solutions technologiques pour résoudre des problèmes sociaux.",
-      "image": "https://example.com/images/social_innovation_hackathon.jpg",
+      "image": "",
       "location": "Co-working Space 2.0, 12 Rue de l'Innovation, Paris, France"
     },
     {
@@ -95,7 +95,7 @@
       "date": "2025-03-20",
       "time": "18:00",
       "description": "Un webinaire pour apprendre à gérer vos finances personnelles, économiser de l'argent et planifier votre avenir financier.",
-      "image": "https://example.com/images/personal_finance_webinar.jpg",
+      "image": "",
       "location": "En ligne (Google Meet)"
     },
     {
@@ -104,7 +104,7 @@
       "date": "2025-03-25",
       "time": "11:00",
       "description": "Rejoignez-nous pour discuter de la manière de promouvoir la santé mentale en entreprise et de prévenir les risques psychologiques.",
-      "image": "https://example.com/images/mental_health_seminar.jpg",
+      "image": "",
       "location": "Bureau de l'Innovation, 34 Rue de la Santé, Toulouse, France"
     },
     {
@@ -113,7 +113,7 @@
       "date": "2025-03-28",
       "time": "19:00",
       "description": "Venez profiter d'une soirée de musique locale avec des performances de groupes et d'artistes de la région.",
-      "image": "https://example.com/images/music_festival.jpg",
+      "image": "",
       "location": "Parc de la Musique, 250 Avenue des Concerts, Marseille, France"
     },
     {
@@ -122,7 +122,7 @@
       "date": "2025-04-01",
       "time": "10:00",
       "description": "Un forum pour discuter des pratiques durables en entreprise et des stratégies pour réduire l'empreinte écologique.",
-      "image": "https://example.com/images/sustainability_forum.jpg",
+      "image": "",
       "location": "Centre d'Innovation Durable, 56 Rue Verte, Nantes, France"
     }
   ]
