@@ -8,9 +8,6 @@ export default {
   theme: {
     extend: {
       colors: {
-<<<<<<< HEAD
-        
-=======
         background: "var(--background)",
         foreground: "var(--foreground)",
         
@@ -19,7 +16,6 @@ export default {
         textPrimary: '#374151',
         textSecondary: '#9CA3AF',
         background: '#FFFFFF'
->>>>>>> e3ca7d7 (Correction apporter sur le header et le footer)
       },
     },
   },
