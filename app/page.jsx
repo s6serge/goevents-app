@@ -6,7 +6,7 @@ export default function Home() {
     <div className="h-screen flex items-center justify-center text-white relative">
       {/* SVG Background */}
       <img
-        src="/photo.svg"
+        src="/multicolor.webp"
         alt="Background"
         className="absolute inset-0 w-full h-full object-cover"
       />
