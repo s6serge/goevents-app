@@ -1,23 +1,33 @@
-// app/login/page.jsx
-// Ce composant affiche la page de connexion avec un formulaire permettant à l'utilisateur de se connecter.
+import GoEventLogo from '../../components/GoEventLogo';
+
+// Ce composant affiche la page de connexion avec un formulaire pour l'utilisateur,
+// et intègre le logo "GoEvent" en haut pour renforcer l'identité visuelle.
 export default function LoginPage() {
   return (
     // Niveau 1 : Conteneur principal de la page
-    // - Définit un padding vertical (py-8), les couleurs de fond pour les modes clair et sombre,
-    //   et une hauteur minimale pour occuper tout l'écran (min-h-screen).
+    // - Ajoute un padding vertical (py-8), définit les couleurs de fond pour les modes clair et sombre,
+    //   et impose une hauteur minimale pour occuper toute la fenêtre (min-h-screen).
     // - Utilise flex pour centrer verticalement le contenu.
     <div className="py-8 bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center">
       
-      {/* 
+      {/*
         Niveau 2 : Carte de connexion
-        - Centre horizontalement la carte avec mx-auto et un padding horizontal (px-4).
-        - Limite la largeur maximale (max-w-md) pour un rendu optimal sur écran.
-        - Applique un fond blanc (ou sombre en mode dark), une ombre (shadow-lg) et des coins arrondis (rounded-lg),
+        - Centre horizontalement la carte (mx-auto) et limite sa largeur maximale (max-w-md).
+        - Applique un fond blanc (ou sombre en mode dark), une ombre (shadow-lg) et des coins arrondis (rounded-lg).
         - Ajoute un padding intérieur (p-6) pour espacer le contenu.
       */}
       <div className="mx-auto px-4 max-w-md bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
         
-        {/* 
+        {/*
+          Niveau 3 : Conteneur du logo
+          - Affiche le logo "GoEvent" centré en haut de la carte.
+          - La marge inférieure (mb-4) sépare le logo du reste du contenu.
+        */}
+        <div className="flex justify-center mb-4">
+          <GoEventLogo />
+        </div>
+
+        {/*
           Niveau 3 : Titre de la page de connexion
           - Texte de grande taille, en gras et centré.
           - Marge inférieure (mb-6) pour séparer le titre du formulaire.
@@ -26,17 +36,16 @@ export default function LoginPage() {
           Connexion
         </h1>
         
-        {/* 
+        {/*
           Niveau 3 : Formulaire de connexion
           - Permet à l'utilisateur de saisir son email et son mot de passe.
-          - Chaque champ est directement placé dans le formulaire pour maintenir une imbrication maximale de 4 niveaux.
+          - Les éléments internes (labels, inputs, bouton) restent au niveau 4.
         */}
         <form>
-          {/* 
+          {/*
             Niveau 4 : Champ Email
-            - Label associé et champ de saisie pour l'email.
-            - Le label et l'input sont placés directement dans le formulaire.
-            - La marge (mb-1 pour le label et mb-4 pour l'input) assure un espacement harmonieux.
+            - Label associé et champ de saisie pour l'adresse email.
+            - Les marges (mb-1 pour le label et mb-4 pour l'input) assurent un espacement harmonieux.
           */}
           <label htmlFor="email" className="block text-gray-700 dark:text-gray-200 mb-1">
             Email
@@ -48,10 +57,10 @@ export default function LoginPage() {
             className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-500 mb-4"
           />
           
-          {/* 
+          {/*
             Niveau 4 : Champ Mot de passe
             - Label associé et champ de saisie pour le mot de passe.
-            - Les marges assurent un espacement cohérent avec le champ précédent.
+            - Les marges garantissent un espacement cohérent.
           */}
           <label htmlFor="password" className="block text-gray-700 dark:text-gray-200 mb-1">
             Mot de passe
@@ -63,9 +72,9 @@ export default function LoginPage() {
             className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-500 mb-6"
           />
           
-          {/* 
+          {/*
             Niveau 4 : Bouton de soumission
-            - Bouton sur toute la largeur, avec un fond bleu qui s'assombrit au survol.
+            - Bouton sur toute la largeur avec un fond bleu qui s'assombrit au survol.
             - Transition fluide pour une meilleure interaction.
           */}
           <button
