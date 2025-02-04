@@ -12,7 +12,7 @@ export const metadata = {
   title: 'GoEvents-app',
   description: 'Site Web d\'une salle de conférence qui affiche les différents événements',
 };
-// further clarification
+
 // Root layout
 export default function RootLayout({ children }) {
   return (
