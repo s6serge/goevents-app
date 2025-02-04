@@ -8,7 +8,7 @@ export default function Event2Page() {
     location: "Lyon, Musée des Beaux-Arts",
     description:
       "Découvrez une exposition captivante mettant en lumière des artistes émergents et des œuvres d'art innovantes. Une occasion unique de plonger dans le monde de l'art contemporain.",
-    imageSrc: "/art.jpg", // Place your art image in the public folder
+    imageSrc: "/art.svg", // Place your art image in the public folder
   };
 
   const extraContent = (

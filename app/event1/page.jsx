@@ -8,7 +8,7 @@ export default function Event1Page() {
     location: "Paris, La Salle Pleyel",
     description:
       "Rejoignez-nous pour une soirée inoubliable avec des performances live de musiciens renommés. Venez profiter d'une ambiance électrisante et d'une expérience musicale unique.",
-    imageSrc: "/concert.jpg", // Place your concert image in the public folder
+    imageSrc: "/concert.svg", // Place your concert image in the public folder
   };
 
   const extraContent = (
