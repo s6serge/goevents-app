@@ -4,11 +4,11 @@ import EventDetail from '@/components/EventDetail';
 export default function Event1Page() {
   const eventData = {
     title: "Concert Night",
-    date: "25 Décembre 2023, 20:00",
+    date: "25 Mars 2025, 20:00", // Updated date to March 2025
     location: "Paris, La Salle Pleyel",
     description:
       "Rejoignez-nous pour une soirée inoubliable avec des performances live de musiciens renommés. Venez profiter d'une ambiance électrisante et d'une expérience musicale unique.",
-    imageSrc: "/concert.svg", // Place your concert image in the public folder
+    imageSrc: "/concert.webp", // Place your concert image in the public folder
   };
 
   const extraContent = (
