@@ -7,32 +7,33 @@ import Contact from '@/components/Contact';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Inter } from 'next/font/google';
+
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({ children }) {
+
+export default function RootLayout() {
     const [page, setPage] = useState('accueil'); // L'état de la page active
 
     return (
-        <html lang="fr" className="h-full overflow-x-hidden">
-            <body className={`${inter.className} h-full flex flex-col`}>
+        <html lang="en" className="h-full overflow-x-hidden">
+            <body >
                 {/* En-tête avec le prop setPage */}
-                <Header setPage={setPage} />
+                <Header changePage={setPage} />
 
+                <main>
                 {/* Contenu principal, où on affiche la page sélectionnée */}
                 <div className="flex-grow flex-shrink-0 relative z-0">
-                    {/* Rendu conditionnel selon la page */}
-                    {page === 'accueil' && <Accueil />}
-                    {page === 'agenda' && <Agenda />}
-                    {page === 'contact' && <Contact />}
-                    {page === 'EspaceClient' && <EspaceClient />}
+                    {page === "accueil" ? ( <Accueil />):
+                     
                     
-                    {/* Si aucune page n'est sélectionnée, vous pouvez afficher des erreurs ou un message */}
-                    {!['accueil', 'agenda', 'contact', 'EspaceClient'].includes(page) && <div>404 - Page non trouvée</div>}
+                    page === 'agenda' ? (<Agenda />) :
+                    page === 'contact' ? ( <Contact />):
+                    page === 'espace' ? (<EspaceClient /> ): null}
+                    
+                                     
                 </div>
-
+                </main>
                 {/* Pied de page */}
                 <Footer />
             </body>
