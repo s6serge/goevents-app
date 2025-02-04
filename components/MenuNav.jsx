@@ -2,7 +2,7 @@ export function MenuNav({ changePage = () => {}, menuOpen }) {
   const menuItems = [
     { key: "accueil", label: "Accueil" },
     { key: "agenda", label: "Agenda" },
-    { key: "contact", label: "Contact" },
+    { key: "contact", label: "Ajout Evenement" },
     { key: "espace", label: "Espace Client" },
   ];
 
