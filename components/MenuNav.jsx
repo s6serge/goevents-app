@@ -59,7 +59,7 @@ const NavigationMenu = ({ menuOpen, currentPage, onPageChange }) => (
                 items={[
                     { id: 'accueil', text: 'Accueil' },
                     { id: 'agenda', text: 'Agenda' },
-                    { id: 'contact', text: 'Contact' },
+                    { id: 'contact', text: 'Ajout Event' },
                     { id: 'espace', text: 'Espace Client' },
                 ]}
                 currentPage={currentPage}
