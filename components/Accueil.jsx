@@ -83,7 +83,7 @@ const ActionButtons = ({ onEventClick }) => (
             Voir les Événements
         </button>
         <button
-            onClick={() => window.location.href = '#contact'} // Redirige vers la section contact lors du clic
+            onClick={() => window.location.href = ''} // Redirige vers la section contact lors du clic
             className="px-8 py-3 text-lg font-medium 
                      text-light-primary dark:text-accent border-2 
                      border-light-primary dark:border-accent rounded-full
