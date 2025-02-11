@@ -1,93 +1,118 @@
-"use client";
+"use client"; // Indique que ce code s'exécute côté client
 
-import { useState } from "react";
-import Particles from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Agenda from "./Agenda";
+import { useState } from "react"; // Import du hook useState depuis React (même s'il n'est pas utilisé dans ce fichier)
+import { ToastContainer } from "react-toastify"; // Import du composant pour afficher les notifications toast
+import "react-toastify/dist/ReactToastify.css"; // Import des styles CSS pour react-toastify
+import Stats from './Stats'; // Import du composant Stats
+import Agenda from "./Agenda"; // Import du composant Agenda
 
-export default function Accueil() {
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    const [page, setPage] = useState("home"); // Ajout d'un état pour la page actuelle
+// Composant StatCard : affiche une carte de statistique avec un nombre et un libellé
+const StatCard = ({ number, label }) => (
+    <div className="flex flex-col items-center p-4 bg-white/10 backdrop-blur-sm 
+                    rounded-lg shadow-lg hover:transform hover:-translate-y-1 
+                    transition-all duration-300">
+        <span className="text-3xl font-bold text-secondary dark:text-accent">
+            {number} {/* Affiche le nombre de la statistique */}
+        </span>
+        <span className="text-sm text-gray-600 dark:text-gray-300">
+            {label} {/* Affiche le libellé de la statistique */}
+        </span>
+    </div>
+);
 
-    const toggleDarkMode = () => {
-        setIsDarkMode((prevMode) => !prevMode);
-    };
+// Level 1: UI Components
+// Composant HeroTitle : affiche le titre principal de l'application
+const HeroTitle = () => (
+    <h1 className="text-6xl md:text-8xl font-bold mb-8 
+                   bg-clip-text text-transparent 
+                   bg-gradient-to-r from-light-primary via-light-primary/80 to-light-primary dark:from-primary dark:via-accent dark:to-accent">
+        GoEvents-app
+    </h1>
+);
 
-    const particlesInit = async (engine) => {
-        await loadSlim(engine);
-    };
+// Level 1: UI Components
+// Composant Description : affiche une description pour inciter l'utilisateur à découvrir les événements
+const Description = () => (
+    <p className="text-xl md:text-3xl mb-12 text-gray-700 dark:text-gray-300 
+                  max-w-3xl mx-auto leading-relaxed">
+        Découvrez et participez aux meilleurs événements professionnels et culturels
+    </p>
+);
 
+// Level 2: Section Components
+// Composant HeroSection : regroupe le titre, la description et les boutons d'action dans une section de présentation
+const HeroSection = ({ onEventClick }) => (
+    <div className="flex-1 flex flex-col justify-center">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+            <div className="text-center">
+                <HeroTitle /> {/* Affiche le titre principal */}
+                <Description /> {/* Affiche la description */}
+                <ActionButtons onEventClick={onEventClick} /> {/* Affiche les boutons d'action */}
+            </div>
+        </div>
+    </div>
+);
+
+// Level 3: Content Components
+// Composant HomeContent : contient l'ensemble du contenu principal de la page d'accueil
+const HomeContent = ({ onEventClick }) => (
+    <div className="min-h-screen flex flex-col">
+        <div className="flex-1 flex flex-col justify-center px-4 md:px-8 py-12">
+            <div className="max-w-7xl mx-auto w-full">
+                <div className="text-center mb-16">
+                    <HeroTitle /> {/* Affiche le titre principal */}
+                    <Description /> {/* Affiche la description */}
+                    <ActionButtons onEventClick={onEventClick} /> {/* Affiche les boutons d'action */}
+                </div>
+                <Stats /> {/* Affiche le composant des statistiques */}
+            </div>
+        </div>
+    </div>
+);
+
+// Level 4: UI Elements
+// Composant ActionButtons : affiche les boutons permettant de naviguer vers la liste des événements ou la section de contact
+const ActionButtons = ({ onEventClick }) => (
+    <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+        <button
+            onClick={onEventClick} // Appelle la fonction onEventClick lors du clic
+            className="px-8 py-3 text-lg font-medium text-white 
+                     bg-light-primary dark:bg-accent rounded-full 
+                     hover:bg-light-primary/90 dark:hover:bg-accent/90"
+        >
+            Voir les Événements
+        </button>
+        <button
+            onClick={() => window.location.href = '#contact'} // Redirige vers la section contact lors du clic
+            className="px-8 py-3 text-lg font-medium 
+                     text-light-primary dark:text-accent border-2 
+                     border-light-primary dark:border-accent rounded-full
+                     hover:bg-light-primary/10 dark:hover:bg-accent/10"
+        >
+            Nous Contacter
+        </button>
+    </div>
+);
+
+// Composant principal Accueil : représente la page d'accueil de l'application
+export default function Accueil({ changePage }) {
+    // Fonction de gestion du clic sur le bouton "Voir les Événements"
     const handleEventClick = () => {
-        
-        setPage("agenda"); // Met à jour la page pour afficher Agenda
+        changePage('agenda'); // Change la page affichée vers 'agenda'
     };
 
     return (
-        <main
-            className={`relative flex flex-col items-center justify-center min-h-[70vh] ${
-                isDarkMode
-                    ? "dark bg-gradient-to-b from-gray-900 to-gray-800 text-white"
-                    : "bg-gradient-to-b from-blue-100 to-white text-black"
-            }`}
-        >
-            {/* Particles Background */}
-            <Particles
-                id="tsparticles"
-                init={particlesInit}
-                options={{
-                    background: {
-                        color: { value: isDarkMode ? "#1a1a1a" : "#ffffff" },
-                    },
-                    particles: {
-                        color: { value: isDarkMode ? "#ffffff" : "#000000" },
-                        links: {
-                            color: isDarkMode ? "#ffffff" : "#000000",
-                            enable: true,
-                        },
-                        move: { enable: true },
-                    },
-                }}
-                className="absolute inset-0 -z-10"
-            />
+        <main className="min-h-screen w-full">
+            {/* Background : un dégradé en arrière-plan */}
+            <div className="fixed inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 -z-5" />
 
-            {/* Affichage conditionnel de la page */}
-            {page === "home" ? (
-                <div className="absolute top-1/2 transform -translate-y-1/2 text-center z-20 w-full h-full flex flex-col items-center justify-center">
-                    {/* Titre principal */}
-                    <h1 className="text-3xl md:text-5xl font-bold text-200 animate-float">
-                        Soyez la bienvenue sur GoEvents-app
-                    </h1>
-                    <p className="mt-4 text-lg md:text-xl animate-float">
-                        Explore upcoming events, conferences, and festivals.
-                    </p>
-                    <button
-                        className="mt-6 px-6 py-3 bg-primary text-white font-bold text-lg rounded-lg shadow-lg hover:bg-blue-600 transition-colors duration-300 animate-float"
-                        onClick={handleEventClick}
-                    >
-                        Voir les Événements
-                    </button>
-                </div>
-            ) : (
-                <Agenda /> // Affiche l'Agenda lorsque "Voir les Événements" est cliqué
-            )}
+            {/* Content : le contenu principal de la page */}
+            <div className={`relative z-10 transition-opacity duration-300`}>
+                <HomeContent onEventClick={handleEventClick} /> {/* Affiche le contenu principal */}
+            </div>
 
-            {/* Dark Mode Toggle Button */}
-            <button
-                onClick={toggleDarkMode}
-                className="fixed bottom-4 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg z-50 transition-transform hover:scale-105 focus:ring focus:ring-blue-300"
-                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-                title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-                {isDarkMode ? "🌞" : "🌙"}
-            </button>
-
-            {/* Toast Notifications */}
+            {/* ToastContainer : composant pour afficher les notifications toast */}
             <ToastContainer position="top-center" autoClose={3000} />
-
-            {/* Main Content */}
-            <div className="container mx-auto max-w-4xl relative z-10 mt-8"></div>
         </main>
     );
 }

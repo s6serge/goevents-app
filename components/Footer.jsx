@@ -1,83 +1,144 @@
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"; // Importation des icônes de réseaux sociaux depuis react-icons
 
-const footerSections = [
-  {
-    title: "Liens rapides",
-    links: [
-      { href: "/about", label: "À propos" },
-      { href: "/events", label: "Événements" },
-      { href: "/faq", label: "FAQ" },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { href: "mailto:support@goevents.com", label: "Email: sup@goevents.com" },
-      { href: "tel:+123456789", label: "Téléphone: +1 234 567 89" },
-      { label: "Adresse: 123 Rue des Événements, Ville, Pays" },
-    ],
-  },
-];
+// Level 1: UI Components
+// Composant FooterSection : sert de conteneur pour une section du pied de page avec un titre et un contenu (children)
+const FooterSection = ({ title, children }) => (
+    <div>
+        <h3 className="text-lg font-semibold mb-4 text-light-primary dark:text-accent">
+            {title} {/* Affiche le titre de la section */}
+        </h3>
+        {children} {/* Contenu de la section */}
+    </div>
+);
 
-const socialLinks = [
-  { href: "https://facebook.com", icon: <FaFacebook /> },
-  { href: "https://instagram.com", icon: <FaInstagram /> },
-  { href: "https://twitter.com", icon: <FaTwitter /> },
-];
+// Level 2: Section Components
+// Composant QuickLinks : affiche une liste de liens rapides (navigation) pour le pied de page
+const QuickLinks = () => (
+    <ul className="text-white text-sm space-y-2">
+        <li>
+            <a href="/about" 
+               className="group inline-flex items-center text-white 
+                        transition-all duration-200 ease-in-out">
+                <span className="hover:text-accent hover:underline transform 
+                               group-hover:scale-110 inline-block">
+                    À propos
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="/events" 
+               className="group inline-flex items-center text-white 
+                        transition-all duration-200 ease-in-out">
+                <span className="hover:text-accent hover:underline transform 
+                               group-hover:scale-110 inline-block">
+                    Événements
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="/faq" 
+               className="group inline-flex items-center text-white 
+                        transition-all duration-200 ease-in-out">
+                <span className="hover:text-accent hover:underline transform 
+                               group-hover:scale-110 inline-block">
+                    FAQ
+                </span>
+            </a>
+        </li>
+    </ul>
+);
 
-const Footer = () => {
-  const year = new Date().getFullYear();
+// Composant ContactInfo : affiche les informations de contact (email, téléphone, adresse)
+const ContactInfo = () => (
+    <ul className="text-white text-sm space-y-2">
+        <li>
+            <a href="mailto:support@goevents.com" 
+               className="group inline-flex items-center text-white 
+                        transition-all duration-200 ease-in-out">
+                <span className="hover:text-accent hover:underline transform 
+                               group-hover:scale-110 inline-block">
+                    Email: sup@goevents.com
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="tel:+123456789" 
+               className="group inline-flex items-center text-white 
+                        transition-all duration-200 ease-in-out">
+                <span className="hover:text-accent hover:underline transform 
+                               group-hover:scale-110 inline-block">
+                    Téléphone: +1 234 567 89
+                </span>
+            </a>
+        </li>
+        <li className="text-white">
+            Adresse: 123 Rue des Événements
+        </li>
+    </ul>
+);
 
-  return (
-    <footer className="bg-[#1E3A8A] text-white py-6 md:py-8 w-full">
-      <div className="container max-w-4xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-        {/* Logo and Description */}
-        <div>
-          <h2 className="text-lg font-bold text-[#D97706] mb-2">GoEvents</h2>
-          <p className="text-sm">Explorez les événements, conférences et festivals à venir.</p>
+// Level 3: Feature Components
+// Composant SocialLinks : affiche les icônes des réseaux sociaux avec leurs liens respectifs
+const SocialLinks = () => (
+    <div className="flex justify-center md:justify-start space-x-4">
+        <a href="#" 
+           className="group p-1 inline-flex items-center text-white 
+                    transition-all duration-200 ease-in-out">
+            <span className="text-xl hover:text-accent transform group-hover:scale-110">
+                <FaFacebook aria-label="Facebook" /> {/* Icône Facebook */}
+            </span>
+        </a>
+        <a href="#" 
+           className="group p-1 inline-flex items-center text-white 
+                    transition-all duration-200 ease-in-out">
+            <span className="text-xl hover:text-accent transform group-hover:scale-110">
+                <FaTwitter aria-label="Twitter" /> {/* Icône Twitter */}
+            </span>
+        </a>
+        <a href="#" 
+           className="group p-1 inline-flex items-center text-white 
+                    transition-all duration-200 ease-in-out">
+            <span className="text-xl hover:text-accent transform group-hover:scale-110">
+                <FaInstagram aria-label="Instagram" /> {/* Icône Instagram */}
+            </span>
+        </a>
+    </div>
+);
+
+// Level 4: UI Elements
+// Composant Copyright : affiche le copyright avec l'année en cours
+const Copyright = () => {
+    const year = new Date().getFullYear(); // Récupère l'année actuelle
+    return (
+        <div className="text-center text-sm text-white/80 mt-8">
+            © {year} GoEvents. Tous droits réservés.
         </div>
-
-        {/* Render Footer Sections */}
-        {footerSections.map((section) => (
-          <div key={section.title}>
-            <h3 className="text-lg font-bold mb-2 text-[#D97706]">{section.title}</h3>
-            <ul className="text-sm space-y-1">
-              {section.links.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href || "#"}
-                    className="hover:underline hover:text-white transition-colors duration-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        {/* Social Media */}
-        <div>
-          <h3 className="text-lg font-bold mb-2 text-[#D97706]">Suivez-nous</h3>
-          <div className="flex justify-center md:justify-start space-x-4">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.href}
-                className="hover:underline hover:text-white transition-colors duration-300 text-xl"
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-700 mt-6 pt-4 text-center text-sm text-white">
-        © {year} GoEvents. Tous droits réservés.
-      </div>
-    </footer>
-  );
+    );
 };
 
-export default Footer;
+// Main Component
+// Composant principal Footer : regroupe toutes les sections du pied de page
+export default function Footer() {
+    return (
+        <footer className="bg-primary py-12">
+            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Section Liens Rapides */}
+                <FooterSection title="Liens Rapides">
+                    <QuickLinks />
+                </FooterSection>
+
+                {/* Section Contact */}
+                <FooterSection title="Contact">
+                    <ContactInfo />
+                </FooterSection>
+
+                {/* Section Suivez-nous */}
+                <FooterSection title="Suivez-nous">
+                    <SocialLinks />
+                </FooterSection>
+            </div>
+            {/* Affichage du Copyright en bas du pied de page */}
+            <Copyright />
+        </footer>
+    );
+}
