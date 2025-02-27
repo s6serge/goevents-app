@@ -43,7 +43,8 @@ const NavWrapper = ({ children }) => (
 // Level 4: UI Elements
 // Composant NavigationMenu : affiche le menu de navigation avec une transition de translation
 const NavigationMenu = ({ menuOpen, currentPage, onPageChange }) => (
-    <nav className={`bg-primary p-4 
+  <nav
+    className={`bg-primary p-4 
                     lg:bg-transparent
                     border-l border-t border-light-primary/20 dark:border-accent/20
                     shadow-lg lg:shadow-none
@@ -53,20 +54,22 @@ const NavigationMenu = ({ menuOpen, currentPage, onPageChange }) => (
                     max-h-[calc(100vh-72px)]
                     ${menuOpen ? 'translate-x-0' : 'translate-x-full'}
                     lg:translate-x-0
-                    `}>
-        <div className="flex flex-col space-y-4">
-            <NavList
-                items={[
-                    { id: 'accueil', text: 'Accueil' },
-                    { id: 'agenda', text: 'Agenda' },
-                    { id: 'contact', text: 'Contact' },
-                    { id: 'espace', text: 'Espace Client' },
-                ]}
-                currentPage={currentPage}
-                onPageChange={onPageChange}
-            />
-        </div>
-    </nav>
+                    `}
+  >
+    <div className="flex flex-col space-y-4">
+      <NavList
+        items={[
+          { id: 'accueil', text: 'Accueil' },
+          { id: 'agenda', text: 'Agenda' },
+          { id: 'contact', text: 'Ajout Event' },
+          { id: 'envoicontact', text: 'Contact' },
+          { id: 'espace', text: 'Espace Client' },
+        ]}
+        currentPage={currentPage}
+        onPageChange={onPageChange}
+      />
+    </div>
+  </nav>
 );
 
 // Main Component
