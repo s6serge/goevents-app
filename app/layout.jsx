@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import EspaceClient from '@/components/EspaceClient';
 import Accueil from '@/components/Accueil';
 import Agenda from '@/components/Agenda';
+import Envoicontact from '@/components/Envoicontact';
 import Contact from '@/components/Contact';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -65,6 +66,7 @@ const MainContent = ({ page, isDarkMode, setPage }) => (
         {page === "accueil" ? <Accueil changePage={setPage} /> :
          page === 'agenda' ? <Agenda /> :
          page === 'contact' ? <Contact /> :
+         page === 'envoicontact' ? <Envoicontact /> :
          page === 'espace' ? <EspaceClient /> : null}
     </main>
 );
