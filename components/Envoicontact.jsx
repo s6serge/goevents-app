@@ -1,185 +1,178 @@
-'use client';
-import { useForm } from "react-hook-form";
-
-// Niveau 1 : Composants d'interface utilisateur (UI)
-
-/**
- * Composant FormInput
- * Affiche un champ input avec un label et gère l'affichage des erreurs.
- * @param {string} label - Le texte du label.
- * @param {function} register - La fonction d'enregistrement de react-hook-form.
- * @param {string} name - Le nom du champ.
- * @param {object} validation - Les règles de validation du champ.
- * @param {object} error - L'objet d'erreur associé au champ.
- */
-const FormInput = ({ label, register, name, validation, error }) => (
-    <label className="flex gap-2 flex-col text-light-text dark:text-gray-200">
-        {label}:
-        <input
-            {...register(name, validation)}
-            type="text"
-            className="border-2 rounded-lg p-2 dark:bg-gray-800 dark:border-gray-700 
-                     dark:text-white dark:placeholder-gray-400"
-        />
-        {error && (
-            <span className="text-red-500 text-xs">{error.message}</span>
-        )}
-    </label>
-);
+"use client";
+import { useState } from "react";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 /**
- * Composant FormTextArea
- * Affiche un champ textarea avec un label.
- * @param {string} label - Le texte du label.
- * @param {function} register - La fonction d'enregistrement de react-hook-form.
- * @param {string} name - Le nom du champ.
+ * Composant ContactInput
+ * Représente un champ de formulaire (input) avec label et gestion du focus/hover.
  */
-const FormTextArea = ({ label, register, name }) => (
-    <label className="flex gap-2 flex-col text-light-text dark:text-gray-200">
-        {label}:
-        <textarea
-            {...register(name)}
-            type="text"
-            className="border-2 rounded-lg p-2 dark:bg-gray-800 dark:border-gray-700 
-                     dark:text-white dark:placeholder-gray-400"
-            rows={5}
-        />
-    </label>
-);
-
-// Niveau 2 : Composants de section
-
-/**
- * Composant FormFields
- * Regroupe plusieurs champs de formulaire avec leurs validations respectives.
- * @param {function} register - La fonction d'enregistrement de react-hook-form.
- * @param {object} errors - Les erreurs de validation pour chaque champ.
- * @param {function} watch - La fonction pour surveiller la valeur des champs.
- */
-const FormFields = ({ register, errors, watch }) => (
-    <div className="space-y-4">
-        <FormInput
-            label="Nom"
-            register={register}
-            name="nom"
-            validation={{ required: 'Champ obligatoire' }}
-            error={errors.nom}
-        />
-        <FormInput
-            label="Email"
-            register={register}
-            name="email"
-            validation={{
-                required: 'Champ obligatoire',
-                pattern: {
-                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: 'Adresse email invalide',
-                },
-            }}
-            error={errors.email}
-        />
-        <FormInput
-            label="Objet"
-            register={register}
-            name="objet"
-        />
-        <FormTextArea
-            label="Message"
-            register={register}
-            name="message"
-        />
-        <FormInput
-            label="Mot de passe"
-            register={register}
-            name="password"
-            validation={{
-                required: 'Champ obligatoire',
-                minLength: {
-                    value: 8,
-                    message: 'Minimum 8 caractères',
-                },
-            }}
-            error={errors.password}
-        />
-        <FormInput
-            label="Confirmer mot de passe"
-            register={register}
-            name="rePassword"
-            validation={{
-                required: 'Champ obligatoire',
-                minLength: {
-                    value: 8,
-                    message: 'Minimum 8 caractères',
-                },
-                validate: (value) =>
-                    value === watch('password') ||
-                    'Les mots de passe ne correspondent pas',
-            }}
-            error={errors.rePassword}
-        />
+function ContactInput({ label, type = "text", value, onChange, required = false }) {
+  return (
+    <div className="mb-4 group">
+      {/* Label du champ */}
+      <label className="block mb-1 text-light-text-darker dark:text-white font-medium">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      {/* Champ input avec effets de hover/focus */}
+      <input
+        type={type}
+        required={required}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full p-3 border rounded 
+                   dark:bg-gray-800 dark:border-gray-700 dark:text-white
+                   focus:outline-none focus:ring-2 focus:ring-light-primary 
+                   dark:focus:ring-accent transition-shadow
+                   hover:shadow-md hover:border-light-primary dark:hover:border-accent"
+      />
     </div>
-);
-
-// Niveau 3 : Composant d'actions
+  );
+}
 
 /**
- * Composant FormActions
- * Affiche les boutons pour soumettre ou annuler le formulaire.
+ * Composant ContactTextArea
+ * Zone de texte (textarea) avec label, hover/focus et styles communs.
  */
-const FormActions = () => (
-    <div className="flex justify-center gap-4 my-8">
-        <input
-            type="submit"
-            value="Envoyer"
-            className="bg-light-primary dark:bg-accent text-white rounded-lg p-2 
-                     cursor-pointer hover:bg-light-primary/90 dark:hover:bg-accent/80"
-        />
-        <input
-            type="button"
-            value="Annuler"
-            className="bg-gray-200 dark:bg-accent/20 text-gray-700 dark:text-accent 
-                     rounded-lg p-2 cursor-pointer hover:bg-gray-300 dark:hover:bg-accent/30"
-        />
+function ContactTextArea({ label, value, onChange }) {
+  return (
+    <div className="mb-4 group">
+      <label className="block mb-1 text-light-text-darker dark:text-white font-medium">
+        {label}
+      </label>
+      <textarea
+        rows={5}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full p-3 border rounded 
+                   dark:bg-gray-800 dark:border-gray-700 dark:text-white
+                   focus:outline-none focus:ring-2 focus:ring-light-primary 
+                   dark:focus:ring-accent transition-shadow
+                   hover:shadow-md hover:border-light-primary dark:hover:border-accent"
+      />
     </div>
-);
-
-// Niveau 4 : Composant principal
+  );
+}
 
 /**
- * Composant Envoicontact
- * Composant principal qui assemble le formulaire et gère sa soumission.
+ * Page de contact
+ * - Mise en page : Deux colonnes (gauche : infos, droite : formulaire)
+ * - Fond gris clair en mode clair, gris foncé en mode sombre
+ * - Animations d'apparition (fadeIn), de translation (fadeInLeft, fadeInRight)
+ * - Effets hover sur les champs et sur les icônes
  */
-export default function Envoicontact() {
-    // Utilisation de react-hook-form pour gérer l'état et la validation du formulaire
-    const {
-        register,
-        handleSubmit,
-        getValues,
-        formState: { errors },
-        watch,
-    } = useForm({
-        defaultValues: {
-            nom: '',
-        },
-    });
+export default function Contact() {
+  // État local pour stocker les données du formulaire
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
-    // Fonction de soumission du formulaire qui récupère les valeurs et les affiche dans la console
-    const sendMail = () => {
-        const data = getValues();
-        console.log(data);
-    };
+  /**
+   * Met à jour le champ correspondant dans l'état local.
+   * @param {string} key - Le nom du champ à mettre à jour.
+   * @param {string} val - La nouvelle valeur du champ.
+   */
+  const handleChange = (key, val) => {
+    setFormData((prev) => ({ ...prev, [key]: val }));
+  };
 
-    return (
-        <div className="flex justify-center min-h-[80vh] items-center py-12">
-            <form
-                onSubmit={handleSubmit(sendMail)}
-                className="flex gap-4 flex-col min-w-96 bg-white dark:bg-gray-800/50 
-                          p-8 rounded-2xl border border-light-border dark:border-gray-700
-                          shadow-lg dark:shadow-gray-900/30"
-            >
-                <FormFields register={register} errors={errors} watch={watch} />
-                <FormActions />
-            </form>
+  /**
+   * Gère la soumission du formulaire : affiche les données dans la console,
+   * puis réinitialise tous les champs.
+   * @param {object} e - L'événement de soumission (submit).
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Formulaire soumis :", formData);
+    // Réinitialise les champs
+    setFormData({ name: "", email: "", phone: "", message: "" });
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      {/* Conteneur principal (animation fadeIn) */}
+      <div
+        className="max-w-6xl w-full mx-auto my-12 px-4 sm:px-6 md:px-8 
+                   bg-white dark:bg-gray-800 rounded-lg shadow-lg md:flex
+                   animate-[fadeIn_0.4s_ease-out]"
+      >
+        {/* Colonne gauche (infos), animation depuis la gauche */}
+        <div
+          className="w-full md:w-2/5 p-6 border-b md:border-b-0 md:border-r 
+                     border-gray-200 dark:border-gray-700
+                     animate-[fadeInLeft_0.4s_ease-out]"
+        >
+          <h1 className="text-3xl font-bold mb-4 text-light-primary dark:text-accent">
+            Contactez Nous
+          </h1>
+          <p className="text-light-text dark:text-gray-300 mb-6">
+            Une question, un souci ou simplement envie de dire bonjour ?
+            N’hésitez pas à nous contacter.
+          </p>
+          {/* Informations de contact avec icônes (hover scale) */}
+          <div className="space-y-4 text-light-text dark:text-gray-300">
+            <div className="flex items-center gap-2 hover:scale-105 transition-transform">
+              <FaMapMarkerAlt className="text-light-primary dark:text-accent" />
+              <span>123 Rue des Événements, Montreal, H1T 2P9</span>
+            </div>
+            <div className="flex items-center gap-2 hover:scale-105 transition-transform">
+              <FaPhoneAlt className="text-light-primary dark:text-accent" />
+              <span>+1 514-515-5253</span>
+            </div>
+            <div className="flex items-center gap-2 hover:scale-105 transition-transform">
+              <FaEnvelope className="text-light-primary dark:text-accent" />
+              <span>contact@goevents.com</span>
+            </div>
+          </div>
         </div>
-    );
+
+        {/* Colonne droite (formulaire), animation depuis la droite */}
+        <div
+          className="w-full md:w-3/5 p-6
+                     animate-[fadeInRight_0.4s_ease-out]"
+        >
+          <h2 className="text-xl font-semibold mb-4 text-light-text-darker dark:text-white">
+            Envoyez-nous un message
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <ContactInput
+              label="Nom"
+              value={formData.name}
+              onChange={(val) => handleChange("name", val)}
+              required
+            />
+            <ContactInput
+              label="Email"
+              type="email"
+              value={formData.email}
+              onChange={(val) => handleChange("email", val)}
+              required
+            />
+            <ContactInput
+              label="Téléphone"
+              type="tel"
+              value={formData.phone}
+              onChange={(val) => handleChange("phone", val)}
+            />
+            <ContactTextArea
+              label="Message"
+              value={formData.message}
+              onChange={(val) => handleChange("message", val)}
+            />
+
+            <button
+              type="submit"
+              className="w-full mt-4 bg-light-primary dark:bg-accent text-white 
+                         py-3 px-4 rounded hover:bg-light-primary/90
+                         dark:hover:bg-accent/90 transition duration-300"
+            >
+              Envoyer
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
