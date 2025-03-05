@@ -1,6 +1,13 @@
 'use client';
 // Directive indiquant que ce code doit être exécuté côté client
 
+
+import { appWithTranslation } from 'next-i18next';
+
+import { useTranslation } from 'react-i18next';
+
+
+
 // Importation de la police "Inter" depuis Google Fonts via Next.js
 import { Inter } from 'next/font/google';
 // Importation des hooks React useState et useEffect
@@ -18,6 +25,10 @@ import './globals.css';
 
 // Chargement de la police Inter avec le sous-ensemble "latin"
 const inter = Inter({ subsets: ['latin'] });
+
+// Importation de la configuration i18n depuis le fichier i18next.js
+// Cela permet d'utiliser i18next pour la gestion des traductions dans l'application React
+import i18n from '@/i18next';
 
 // Level 1: UI Components
 // Composant pour le bouton permettant de basculer entre le mode sombre et le mode clair
