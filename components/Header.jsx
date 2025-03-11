@@ -4,6 +4,7 @@ import Image from "next/image"; // Importation du composant Image de Next.js pou
 import { useState } from 'react'; // Importation du hook useState pour la gestion de l'état local
 import { MenuNav } from "./MenuNav"; // Importation du composant MenuNav pour la navigation
 
+import i18next from 'i18next';
 // Level 1: UI Components
 // Composant LogoSection : affiche le logo du site et le nom du site
 const LogoSection = () => (
@@ -82,19 +83,29 @@ const HeaderWrapper = ({ children }) => (
 // Main Component
 // Composant principal Header : combine le logo et la navigation dans l'en-tête du site
 export default function Header({ changePage }) {
-    const [menuOpen, setMenuOpen] = useState(false); // État pour gérer l'ouverture/fermeture du menu mobile
+    const [menuOpen, setMenuOpen] = useState(); // État pour gérer l'ouverture/fermeture du menu mobile
 
     return (
-        <HeaderWrapper>
-            <LogoSection /> {/* Affiche la section du logo */}
-            <div className="flex items-center gap-4">
-                <MenuButton 
-                    isOpen={menuOpen}
-                    onClick={() => setMenuOpen(!menuOpen)} // Bascule l'état du menu lors du clic
-                />
-                <NavigationMenu changePage={changePage} menuOpen={menuOpen} /> {/* Affiche le menu de navigation */}
-            </div>
-        </HeaderWrapper>
+      <HeaderWrapper>
+        <LogoSection /> {/* Affiche la section du logo */}
+        <div className="flex items-center gap-4">
+          <MenuButton
+            isOpen={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)} // Bascule l'état du menu lors du clic
+          />
+          <NavigationMenu changePage={changePage} menuOpen={menuOpen} />
+          <select
+            onChange={(e) => i18next.changeLanguage(e.target.value)}
+            defaultValue={i18next.language}
+            className="px-3 py-2 rounded-lg bg-light-primary dark:bg-accent text-white 
+                     cursor-pointer border-none outline-none hover:bg-light-primary/80 
+                     dark:hover:bg-accent/80 transition-colors text-sm font-medium"
+          >
+            <option value="en" className="bg-primary text-white">EN</option>
+            <option value="fr" className="bg-primary text-white">FR</option>
+          </select>
+        </div>
+      </HeaderWrapper>
     );
 }
 

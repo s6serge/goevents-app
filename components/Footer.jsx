@@ -1,4 +1,5 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"; // Importation des icônes de réseaux sociaux depuis react-icons
+import { useTranslation } from 'react-i18next';
 
 // Level 1: UI Components
 // Composant FooterSection : sert de conteneur pour une section du pied de page avec un titre et un contenu (children)
@@ -13,69 +14,75 @@ const FooterSection = ({ title, children }) => (
 
 // Level 2: Section Components
 // Composant QuickLinks : affiche une liste de liens rapides (navigation) pour le pied de page
-const QuickLinks = () => (
-    <ul className="text-white text-sm space-y-2">
-        <li>
-            <a href="/about" 
-               className="group inline-flex items-center text-white 
-                        transition-all duration-200 ease-in-out">
-                <span className="hover:text-accent hover:underline transform 
-                               group-hover:scale-110 inline-block">
-                    À propos
-                </span>
-            </a>
-        </li>
-        <li>
-            <a href="/events" 
-               className="group inline-flex items-center text-white 
-                        transition-all duration-200 ease-in-out">
-                <span className="hover:text-accent hover:underline transform 
-                               group-hover:scale-110 inline-block">
-                    Événements
-                </span>
-            </a>
-        </li>
-        <li>
-            <a href="/faq" 
-               className="group inline-flex items-center text-white 
-                        transition-all duration-200 ease-in-out">
-                <span className="hover:text-accent hover:underline transform 
-                               group-hover:scale-110 inline-block">
-                    FAQ
-                </span>
-            </a>
-        </li>
-    </ul>
-);
+const QuickLinks = () => {
+    const { t } = useTranslation('footer');
+    return (
+        <ul className="text-white text-sm space-y-2">
+            <li>
+                <a href="/about" 
+                   className="group inline-flex items-center text-white 
+                            transition-all duration-200 ease-in-out">
+                    <span className="hover:text-accent hover:underline transform 
+                                   group-hover:scale-110 inline-block">
+                        {t('footer.about')}
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/events" 
+                   className="group inline-flex items-center text-white 
+                            transition-all duration-200 ease-in-out">
+                    <span className="hover:text-accent hover:underline transform 
+                                   group-hover:scale-110 inline-block">
+                        {t('footer.events')}
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/faq" 
+                   className="group inline-flex items-center text-white 
+                            transition-all duration-200 ease-in-out">
+                    <span className="hover:text-accent hover:underline transform 
+                                   group-hover:scale-110 inline-block">
+                        {t('footer.faq')}
+                    </span>
+                </a>
+            </li>
+        </ul>
+    );
+};
 
 // Composant ContactInfo : affiche les informations de contact (email, téléphone, adresse)
-const ContactInfo = () => (
-    <ul className="text-white text-sm space-y-2">
-        <li>
-            <a href="mailto:support@goevents.com" 
-               className="group inline-flex items-center text-white 
-                        transition-all duration-200 ease-in-out">
-                <span className="hover:text-accent hover:underline transform 
-                               group-hover:scale-110 inline-block">
-                    Email: sup@goevents.com
-                </span>
-            </a>
-        </li>
-        <li>
-            <a href="tel:+123456789" 
-               className="group inline-flex items-center text-white 
-                        transition-all duration-200 ease-in-out">
-                <span className="hover:text-accent hover:underline transform 
-                               group-hover:scale-110 inline-block">
-                    Téléphone: +1 234 567 89
-                </span>
-            </a>
-        </li>
-        <li className="text-white">
-            Adresse: 123 Rue des Événements
-        </li>
-    </ul>
-);
+const ContactInfo = () => {
+    const { t } = useTranslation('footer');
+    return (
+        <ul className="text-white text-sm space-y-2">
+            <li>
+                <a href="mailto:support@goevents.com" 
+                   className="group inline-flex items-center text-white 
+                            transition-all duration-200 ease-in-out">
+                    <span className="hover:text-accent hover:underline transform 
+                                   group-hover:scale-110 inline-block">
+                        Email: sup@goevents.com
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="tel:+123456789" 
+                   className="group inline-flex items-center text-white 
+                            transition-all duration-200 ease-in-out">
+                    <span className="hover:text-accent hover:underline transform 
+                                   group-hover:scale-110 inline-block">
+                        {t('footer.telephone')}: +1 234 567 89
+                    </span>
+                </a>
+            </li>
+            <li className="text-white">
+                {t('footer.address')}: 123 Rue des Événements
+            </li>
+        </ul>
+    );
+};
 
 // Level 3: Feature Components
 // Composant SocialLinks : affiche les icônes des réseaux sociaux avec leurs liens respectifs
@@ -108,10 +115,11 @@ const SocialLinks = () => (
 // Level 4: UI Elements
 // Composant Copyright : affiche le copyright avec l'année en cours
 const Copyright = () => {
+    const { t } = useTranslation('footer');
     const year = new Date().getFullYear(); // Récupère l'année actuelle
     return (
         <div className="text-center text-sm text-white/80 mt-8">
-            © {year} GoEvents. Tous droits réservés.
+            © {year} GoEvents. {t('footer.rights')}
         </div>
     );
 };
@@ -119,21 +127,20 @@ const Copyright = () => {
 // Main Component
 // Composant principal Footer : regroupe toutes les sections du pied de page
 export default function Footer() {
+    const { t } = useTranslation('footer');
     return (
         <footer className="bg-primary py-12">
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Section Liens Rapides */}
-                <FooterSection title="Liens Rapides">
+                <FooterSection title={t('footer.quickLinks')}>
                     <QuickLinks />
                 </FooterSection>
 
-                {/* Section Contact */}
                 <FooterSection title="Contact">
                     <ContactInfo />
                 </FooterSection>
 
-                {/* Section Suivez-nous */}
-                <FooterSection title="Suivez-nous">
+                <FooterSection title={t('footer.social')}>
                     <SocialLinks />
                 </FooterSection>
             </div>
