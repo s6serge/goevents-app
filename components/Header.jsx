@@ -8,7 +8,7 @@ import i18next from 'i18next';
 // Level 1: UI Components
 // Composant LogoSection : affiche le logo du site et le nom du site
 const LogoSection = () => (
-    <div className="flex items-center gap-2">
+    <a href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
         {/* Conteneur pour le logo */}
         <div className="flex items-center justify-center bg-white rounded-full w-12 h-12 md:w-16 md:h-16 overflow-hidden">
             <Image
@@ -23,7 +23,7 @@ const LogoSection = () => (
         <h1 className="text-xl md:text-3xl font-bold text-light-primary dark:text-accent">
             GO Event
         </h1>
-    </div>
+    </a>
 );
 
 // Level 2: Navigation Components
