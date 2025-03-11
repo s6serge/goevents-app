@@ -1,19 +1,20 @@
-"use client";
-import { useState } from "react";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+'use client';
+import { useState } from 'react';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
-/**
- * Composant ContactInput
- * Représente un champ de formulaire (input) avec label et gestion du focus/hover.
- */
-function ContactInput({ label, type = "text", value, onChange, required = false }) {
+function ContactInput({
+  label,
+  type = 'text',
+  value,
+  onChange,
+  required = false,
+}) {
   return (
     <div className="mb-4 group">
-      {/* Label du champ */}
       <label className="block mb-1 text-light-text-darker dark:text-white font-medium">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
-      {/* Champ input avec effets de hover/focus */}
       <input
         type={type}
         required={required}
@@ -29,10 +30,6 @@ function ContactInput({ label, type = "text", value, onChange, required = false 
   );
 }
 
-/**
- * Composant ContactTextArea
- * Zone de texte (textarea) avec label, hover/focus et styles communs.
- */
 function ContactTextArea({ label, value, onChange }) {
   return (
     <div className="mb-4 group">
@@ -53,57 +50,85 @@ function ContactTextArea({ label, value, onChange }) {
   );
 }
 
-/**
- * Page de contact
- * - Mise en page : Deux colonnes (gauche : infos, droite : formulaire)
- * - Fond gris clair en mode clair, gris foncé en mode sombre
- * - Animations d'apparition (fadeIn), de translation (fadeInLeft, fadeInRight)
- * - Effets hover sur les champs et sur les icônes
- */
 export default function Contact() {
-  // État local pour stocker les données du formulaire
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
+    name: '',
+    email: '',
+    objet: '',
+    message: '',
+    password: '',
+    rePassword: '',
   });
 
-  /**
-   * Met à jour le champ correspondant dans l'état local.
-   * @param {string} key - Le nom du champ à mettre à jour.
-   * @param {string} val - La nouvelle valeur du champ.
-   */
+  const [errors, setErrors] = useState({});
+  const [statusMessage, setStatusMessage] = useState('');
+
   const handleChange = (key, val) => {
     setFormData((prev) => ({ ...prev, [key]: val }));
   };
 
-  /**
-   * Gère la soumission du formulaire : affiche les données dans la console,
-   * puis réinitialise tous les champs.
-   * @param {object} e - L'événement de soumission (submit).
-   */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Formulaire soumis :", formData);
-    // Réinitialise les champs
-    setFormData({ name: "", email: "", phone: "", message: "" });
+
+    // Validation
+    const newErrors = {};
+    if (formData.password.length < 8) {
+      newErrors.password = 'Minimum 8 caractères';
+    }
+    if (formData.rePassword !== formData.password) {
+      newErrors.rePassword = 'Les mots de passe ne correspondent pas';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Envoi EmailJS
+    const templateParams = {
+      nom: formData.name,
+      email: formData.email,
+      objet: formData.objet,
+      message: formData.message,
+    };
+
+    try {
+      const result = await emailjs.send(
+        'service_ak3se6g', // ✅ Ton Service ID
+        'template_ariny4e', // ✅ Ton Template ID
+        templateParams,
+        'WvRKJxpdK5zGfFtID' // ✅ Ton Public Key
+      );
+      console.log('SUCCESS!', result.text);
+      setStatusMessage('Message envoyé avec succès 🎉');
+      // Reset form
+      handleReset();
+    } catch (error) {
+      console.error('FAILED...', error);
+      setStatusMessage("Erreur lors de l'envoi du message ❌");
+    }
+
+    setErrors({});
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      email: '',
+      objet: '',
+      message: '',
+      password: '',
+      rePassword: '',
+    });
+    setErrors({});
+    setStatusMessage('');
   };
 
   return (
     <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-      {/* Conteneur principal (animation fadeIn) */}
-      <div
-        className="max-w-6xl w-full mx-auto my-12 px-4 sm:px-6 md:px-8 
-                   bg-white dark:bg-gray-800 rounded-lg shadow-lg md:flex
-                   animate-[fadeIn_0.4s_ease-out]"
-      >
-        {/* Colonne gauche (infos), animation depuis la gauche */}
-        <div
-          className="w-full md:w-2/5 p-6 border-b md:border-b-0 md:border-r 
-                     border-gray-200 dark:border-gray-700
-                     animate-[fadeInLeft_0.4s_ease-out]"
-        >
+      <div className="max-w-6xl w-full mx-auto my-12 px-4 sm:px-6 md:px-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg md:flex animate-[fadeIn_0.4s_ease-out]">
+        {/* Contact Info Panel */}
+        <div className="w-full md:w-2/5 p-6 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700 animate-[fadeInLeft_0.4s_ease-out]">
           <h1 className="text-3xl font-bold mb-4 text-light-primary dark:text-accent">
             Contactez Nous
           </h1>
@@ -111,7 +136,6 @@ export default function Contact() {
             Une question, un souci ou simplement envie de dire bonjour ?
             N’hésitez pas à nous contacter.
           </p>
-          {/* Informations de contact avec icônes (hover scale) */}
           <div className="space-y-4 text-light-text dark:text-gray-300">
             <div className="flex items-center gap-2 hover:scale-105 transition-transform">
               <FaMapMarkerAlt className="text-light-primary dark:text-accent" />
@@ -128,48 +152,78 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Colonne droite (formulaire), animation depuis la droite */}
-        <div
-          className="w-full md:w-3/5 p-6
-                     animate-[fadeInRight_0.4s_ease-out]"
-        >
+        {/* Contact Form */}
+        <div className="w-full md:w-3/5 p-6 animate-[fadeInRight_0.4s_ease-out]">
           <h2 className="text-xl font-semibold mb-4 text-light-text-darker dark:text-white">
             Envoyez-nous un message
           </h2>
+
           <form onSubmit={handleSubmit}>
             <ContactInput
               label="Nom"
               value={formData.name}
-              onChange={(val) => handleChange("name", val)}
+              onChange={(val) => handleChange('name', val)}
               required
             />
             <ContactInput
               label="Email"
               type="email"
               value={formData.email}
-              onChange={(val) => handleChange("email", val)}
+              onChange={(val) => handleChange('email', val)}
               required
             />
             <ContactInput
-              label="Téléphone"
-              type="tel"
-              value={formData.phone}
-              onChange={(val) => handleChange("phone", val)}
+              label="Objet"
+              value={formData.objet}
+              onChange={(val) => handleChange('objet', val)}
             />
             <ContactTextArea
               label="Message"
               value={formData.message}
-              onChange={(val) => handleChange("message", val)}
+              onChange={(val) => handleChange('message', val)}
             />
 
-            <button
-              type="submit"
-              className="w-full mt-4 bg-light-primary dark:bg-accent text-white 
-                         py-3 px-4 rounded hover:bg-light-primary/90
-                         dark:hover:bg-accent/90 transition duration-300"
-            >
-              Envoyer
-            </button>
+            <ContactInput
+              label="Mot de passe"
+              type="password"
+              value={formData.password}
+              onChange={(val) => handleChange('password', val)}
+              required
+            />
+            {errors.password && (
+              <span className="text-red-500 text-sm">{errors.password}</span>
+            )}
+
+            <ContactInput
+              label="Confirmer mot de passe"
+              type="password"
+              value={formData.rePassword}
+              onChange={(val) => handleChange('rePassword', val)}
+              required
+            />
+            {errors.rePassword && (
+              <span className="text-red-500 text-sm">{errors.rePassword}</span>
+            )}
+
+            {statusMessage && (
+              <p className="mt-4 text-center font-medium text-green-600 dark:text-green-400">
+                {statusMessage}
+              </p>
+            )}
+
+            <div className="flex justify-center gap-4 my-8">
+              <input
+                type="submit"
+                value="Envoyer"
+                className="bg-blue-600 text-white rounded-lg p-2 cursor-pointer hover:bg-blue-700"
+              />
+              <input
+                type="button"
+                value="Annuler"
+                onClick={handleReset}
+                className="bg-gray-500 text-white rounded-lg p-2 cursor-pointer hover:bg-gray-600"
+              />
+            </div>
           </form>
         </div>
       </div>
