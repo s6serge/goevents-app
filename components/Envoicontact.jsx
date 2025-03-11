@@ -56,8 +56,8 @@ export default function Contact() {
     email: '',
     objet: '',
     message: '',
-    password: '',
-    rePassword: '',
+    // password: '',
+    // rePassword: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -71,13 +71,13 @@ export default function Contact() {
     e.preventDefault();
 
     // Validation
-    const newErrors = {};
-    if (formData.password.length < 8) {
-      newErrors.password = 'Minimum 8 caractères';
-    }
-    if (formData.rePassword !== formData.password) {
-      newErrors.rePassword = 'Les mots de passe ne correspondent pas';
-    }
+    // const newErrors = {};
+    // if (formData.password.length < 8) {
+    //   newErrors.password = 'Minimum 8 caractères';
+    // }
+    // if (formData.rePassword !== formData.password) {
+    //   newErrors.rePassword = 'Les mots de passe ne correspondent pas';
+    // }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -117,8 +117,8 @@ export default function Contact() {
       email: '',
       objet: '',
       message: '',
-      password: '',
-      rePassword: '',
+      // password: '',
+      // rePassword: '',
     });
     setErrors({});
     setStatusMessage('');
@@ -183,7 +183,7 @@ export default function Contact() {
               onChange={(val) => handleChange('message', val)}
             />
 
-            <ContactInput
+            {/* <ContactInput
               label="Mot de passe"
               type="password"
               value={formData.password}
@@ -192,8 +192,8 @@ export default function Contact() {
             />
             {errors.password && (
               <span className="text-red-500 text-sm">{errors.password}</span>
-            )}
-
+            )} */}
+{/* 
             <ContactInput
               label="Confirmer mot de passe"
               type="password"
@@ -203,7 +203,7 @@ export default function Contact() {
             />
             {errors.rePassword && (
               <span className="text-red-500 text-sm">{errors.rePassword}</span>
-            )}
+            )} */}
 
             {statusMessage && (
               <p className="mt-4 text-center font-medium text-green-600 dark:text-green-400">
