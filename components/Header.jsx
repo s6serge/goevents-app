@@ -93,17 +93,17 @@ export default function Header({ changePage }) {
             isOpen={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)} // Bascule l'état du menu lors du clic
           />
-          <NavigationMenu changePage={changePage} menuOpen={menuOpen} />{' '}
-          {/* Affiche le menu de navigation */}
+          <NavigationMenu changePage={changePage} menuOpen={menuOpen} />
           <select
             onChange={(e) => i18next.changeLanguage(e.target.value)}
             defaultValue={i18next.language}
-            className="text-black"
+            className="px-3 py-2 rounded-lg bg-light-primary dark:bg-accent text-white 
+                     cursor-pointer border-none outline-none hover:bg-light-primary/80 
+                     dark:hover:bg-accent/80 transition-colors text-sm font-medium"
           >
-            <option value="en">EN</option>
-            <option value="fr">FR</option>
-            </select>
-                
+            <option value="en" className="bg-primary text-white">EN</option>
+            <option value="fr" className="bg-primary text-white">FR</option>
+          </select>
         </div>
       </HeaderWrapper>
     );
