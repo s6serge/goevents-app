@@ -1,81 +1,81 @@
-"use client"; // Indique que ce code s'exécute côté client
+"use client"; // Ce composant s'exécute uniquement côté client
 
-import { useState } from 'react'; // Import du hook useState de React pour gérer l'état
+import { appWithTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
+import { Inter } from "next/font/google";
+import { useState, useEffect } from "react";
+import EspaceClient from "@/components/EspaceClient";
+import Accueil from "@/components/Accueil";
+import Agenda from "@/components/Agenda";
+import Envoicontact from "@/components/Envoicontact";
+import Contact from "@/components/Contact";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import "./globals.css";
 
-// Level 1: UI Components
-// Composant FilterButton : affiche un bouton pour une catégorie spécifique
-const FilterButton = ({ category, isActive, onClick }) => (
-    <button
-        onClick={() => onClick(category)} // Au clic, appelle la fonction onClick en passant la catégorie
-        className={`px-4 py-2 rounded-lg transition-colors
-                   ${isActive 
-                     ? 'bg-light-primary dark:bg-accent text-white'  // Style pour un bouton actif
-                     : 'text-light-text-darker dark:text-white hover:bg-light-primary/10 dark:hover:bg-accent/10' // Style pour un bouton inactif
-                   }`}
-    >
-        {category} {/* Affiche le nom de la catégorie sur le bouton */}
-    </button>
-);
+// Chargement de la police Inter avec le sous-ensemble "latin"
+const inter = Inter({ subsets: ["latin"] });
 
-// Level 2: Section Components
-// Composant CategoryList : affiche une liste de boutons de filtre pour chaque catégorie
-const CategoryList = ({ categories, activeCategory, onSelect }) => (
-    <div className="flex flex-wrap gap-2">
-        {categories.map(category => (
-            <FilterButton
-                key={category} // Utilise la catégorie comme clé
-                category={category} // Passe la catégorie au composant FilterButton
-                isActive={activeCategory === category} // Détermine si le bouton est actif en comparant avec la catégorie active
-                onClick={onSelect} // Passe la fonction de sélection de catégorie
-            />
-        ))}
-    </div>
-);
+export default function RootLayout() {
+    const { t, i18n } = useTranslation(); // Initialisation de i18next pour la gestion des traductions
+    const [page, setPage] = useState("accueil"); // Stocke la page actuellement affichée
+    const [isDarkMode, setIsDarkMode] = useState(false); // Stocke l'état du mode sombre
+    const [isMounted, setIsMounted] = useState(false); // Empêche l'hydratation incorrecte côté client
 
-// Level 3: Feature Components
-// Composant FilterGroup : regroupe le titre et la liste des catégories de filtres
-const FilterGroup = ({ activeCategory, onFilterChange }) => {
-    const categories = ["Tous", "Conférence", "Festival", "Concert", "Exposition"]; // Définition des catégories disponibles
-    
-    return (
-        <div className="mb-4">
-            <h2 className="text-lg font-semibold mb-4 text-light-text-darker dark:text-white">
-                Filtrer par catégorie
-            </h2>
-            <CategoryList
-                categories={categories} // Passe la liste des catégories au composant CategoryList
-                activeCategory={activeCategory} // Passe la catégorie active
-                onSelect={onFilterChange} // Passe la fonction de changement de filtre
-            />
-        </div>
-    );
-};
+    // Vérifie que le composant est bien monté avant d'afficher l'interface utilisateur
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
-// Level 4: UI Elements
-// Composant FilterWrapper : enveloppe le groupe de filtres dans un conteneur stylisé
-const FilterWrapper = ({ children }) => (
-    <div className="w-full bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg shadow-sm">
-        {children} {/* Affiche les éléments enfants */}
-    </div>
-);
+    // Vérifie si un thème a été précédemment sauvegardé dans le localStorage et l'applique
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme"); 
+        if (savedTheme === "dark") {
+            setIsDarkMode(true);
+            document.documentElement.classList.add("dark");
+        }
+    }, []);
 
-// Main Component
-// Composant principal CategoryFilter qui gère l'état de la catégorie active et transmet les changements
-export default function CategoryFilter({ onFilterChange }) {
-    const [activeCategory, setActiveCategory] = useState("Tous"); // Initialise l'état avec la catégorie "Tous"
-
-    // Fonction de gestion du changement de catégorie
-    const handleCategoryChange = (category) => {
-        setActiveCategory(category); // Met à jour la catégorie active
-        onFilterChange(category); // Notifie le composant parent du changement
+    // Fonction pour basculer entre le mode sombre et le mode clair
+    const toggleDarkMode = () => {
+        const newDarkMode = !isDarkMode; // Inverse l'état du mode sombre
+        setIsDarkMode(newDarkMode);
+        document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", newDarkMode ? "dark" : "light"); // Sauvegarde la préférence de thème
     };
 
+    // Empêche le rendu du HTML tant que le composant n'est pas monté (évite les erreurs de Next.js)
+    if (!isMounted) return null;
+
     return (
-        <FilterWrapper>
-            <FilterGroup
-                activeCategory={activeCategory} // Passe la catégorie active au FilterGroup
-                onFilterChange={handleCategoryChange} // Passe la fonction de gestion du changement de catégorie
-            />
-        </FilterWrapper>
+        <html lang={i18n.language} className={isDarkMode ? "dark" : ""}>
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+            </head>
+            <body className={`${inter.className} overflow-x-hidden`}>
+                {/* En-tête de la page */}
+                <Header changePage={setPage} />
+
+                {/* Contenu principal qui change selon la page sélectionnée */}
+                <main key={page} className={`flex-1 ${isDarkMode ? "bg-dark text-white" : "bg-light text-black"}`}>
+                    {page === "accueil" ? <Accueil changePage={setPage} /> :
+                     page === "agenda" ? <Agenda /> :
+                     page === "contact" ? <Contact /> :
+                     page === "envoicontact" ? <Envoicontact /> :
+                     page === "espace" ? <EspaceClient /> : null}
+                </main>
+
+                {/* Pied de page */}
+                <Footer />
+
+                {/* Bouton pour activer/désactiver le mode sombre */}
+                <button 
+                    onClick={toggleDarkMode} 
+                    className="fixed bottom-4 right-4 p-3 bg-gray-800 text-white rounded-full shadow-lg"
+                >
+                    {isDarkMode ? "🌞" : "🌙"}
+                </button>
+            </body>
+        </html>
     );
 }
