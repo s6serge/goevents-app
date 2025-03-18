@@ -82,37 +82,39 @@ const MainContent = ({ page, isDarkMode, setPage }) => (
     </main>
 );
 
-// Composant principal (layout racine) de l'application
-export default function RootLayout() {
-    // Déclaration des états pour gérer la page actuelle et le mode sombre
-    const [page, setPage] = useState('accueil'); // État pour la page affichée
-    const [isDarkMode, setIsDarkMode] = useState(false); // État pour le mode sombre
+// Main Component
+export default function RootLayout({ children }) {
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-    // Hook useEffect pour récupérer le thème sauvegardé dans le localStorage au montage du composant
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme'); // Récupération du thème sauvegardé
+        const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
-            setIsDarkMode(true); // Activation du mode sombre si le thème est "dark"
-            document.documentElement.classList.add('dark'); // Ajout de la classe "dark" à l'élément HTML
+            setIsDarkMode(true);
+            document.documentElement.classList.add('dark');
         }
     }, []);
 
-    // Fonction pour basculer entre le mode sombre et le mode clair
     const toggleDarkMode = () => {
-        const newDarkMode = !isDarkMode; // Inversion de l'état du mode sombre
-        setIsDarkMode(newDarkMode); // Mise à jour de l'état local
-        document.documentElement.classList.toggle('dark'); // Basculement de la classe "dark" sur l'élément HTML
-        localStorage.setItem('theme', newDarkMode ? 'dark' : 'light'); // Sauvegarde du thème dans le localStorage
+        const newDarkMode = !isDarkMode;
+        setIsDarkMode(newDarkMode);
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', newDarkMode ? 'dark' : 'light');
     };
 
-    // Rendu du layout principal avec tous les composants enfants et le bouton de changement de thème
     return (
         <ThemeProvider isDarkMode={isDarkMode}>
             <PageContainer>
-                <Header changePage={setPage} /> {/* Composant d'en-tête */}
-                <MainContent page={page} isDarkMode={isDarkMode} setPage={setPage} /> {/* Contenu principal */}
-                <Footer /> {/* Composant de pied de page */}
-                <DarkModeButton isDarkMode={isDarkMode} onClick={toggleDarkMode} /> {/* Bouton pour changer le thème */}
+                <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+                <main className={`flex-1 ${
+                    isDarkMode 
+                    ? 'bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white' 
+                    : 'bg-gradient-to-br from-gray-100 via-white to-gray-50 text-gray-900'
+                }`}>
+                    {children}
+                </main>
+                <Footer />
+                <DarkModeButton isDarkMode={isDarkMode} onClick={toggleDarkMode} />
             </PageContainer>
         </ThemeProvider>
     );
