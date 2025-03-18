@@ -5,19 +5,21 @@
 /* Configuration des variables de couleur */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Couleurs en mode clair (format HSL) */
+    --background: 0 0% 100%;       /* blanc */
+    --foreground: 222.2 84% 4.9%;   /* gris foncé */
   }
 
   /* Variables pour le mode sombre */
   .dark {
-    --background: 217 33% 17%;
-    --foreground: 210 40% 98%;
+    --background: 217 33% 17%;      /* couleur sombre */
+    --foreground: 210 40% 98%;      /* texte très clair */
   }
 }
 
+/* Appliquer le background et la couleur du texte via les variables */
 body {
-  @apply transition-colors duration-200;
+  @apply transition-colors duration-200 bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
 }
 
 /* Styles de base pour les titres */
@@ -36,27 +38,27 @@ a {
 }
 
 /* Add more global dark mode styles as needed */
-
 @layer utilities {
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-    ::-webkit-scrollbar-track {
-        background: transparent;
-    }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-    ::-webkit-scrollbar-thumb {
-        @apply bg-light-primary/50 dark:bg-accent/50 rounded-full;
-    }
+  /* Correction : utilisation de bg-opacity-50 au lieu de /50 */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[var(--light-primary)] dark:bg-[var(--accent)] rounded-full bg-opacity-50;
+  }
 
-    ::-webkit-scrollbar-thumb:hover {
-        @apply bg-light-primary dark:bg-accent;
-    }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[var(--light-primary)] dark:bg-[var(--accent)] rounded-full bg-opacity-100;
+  }
 }
 
 /* Configuration des transitions */
 * {
-    transition-property: transform, opacity;
+  transition-property: transform, opacity;
 }
