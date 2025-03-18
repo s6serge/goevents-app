@@ -70,7 +70,7 @@ const NavigationMenu = ({ menuOpen }) => {
                         { href: '/agenda', text: t('header.documents') },
                         { href: '/contact', text: t('header.contact') },
                         { href: '/envoicontact', text: t('header.envoicontact') },
-                        { href: '/espace', text: t('header.login') },
+                        { href: '/connexion', text: t('header.login') },
                     ]}
                     currentPath={currentPath}
                 />
