@@ -1,13 +1,16 @@
 'use client';
+
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
 function ContactInput({
   label,
   type = 'text',
-  value,
-  onChange,
+  name,
+  register,
+  error,
   required = false,
 }) {
   return (
@@ -17,110 +20,78 @@ function ContactInput({
       </label>
       <input
         type={type}
-        required={required}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full p-3 border rounded 
-                   dark:bg-gray-800 dark:border-gray-700 dark:text-white
-                   focus:outline-none focus:ring-2 focus:ring-light-primary 
-                   dark:focus:ring-accent transition-shadow
-                   hover:shadow-md hover:border-light-primary dark:hover:border-accent"
+        {...register(name, {
+          required: required ? 'Champ obligatoire' : false,
+        })}
+        className={`w-full p-3 border rounded dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-light-primary dark:focus:ring-accent transition-shadow hover:shadow-md ${
+          error
+            ? 'border-red-500'
+            : 'hover:border-light-primary dark:hover:border-accent'
+        }`}
       />
+      {error && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
     </div>
   );
 }
 
-function ContactTextArea({ label, value, onChange }) {
+function ContactTextArea({ label, name, register, error, required = false }) {
   return (
     <div className="mb-4 group">
       <label className="block mb-1 text-light-text-darker dark:text-white font-medium">
-        {label}
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
       <textarea
         rows={5}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full p-3 border rounded 
-                   dark:bg-gray-800 dark:border-gray-700 dark:text-white
-                   focus:outline-none focus:ring-2 focus:ring-light-primary 
-                   dark:focus:ring-accent transition-shadow
-                   hover:shadow-md hover:border-light-primary dark:hover:border-accent"
+        {...register(name, {
+          required: required ? 'Champ obligatoire' : false,
+        })}
+        className={`w-full p-3 border rounded dark:bg-gray-800 dark:border-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-light-primary dark:focus:ring-accent transition-shadow hover:shadow-md ${
+          error
+            ? 'border-red-500'
+            : 'hover:border-light-primary dark:hover:border-accent'
+        }`}
       />
+      {error && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
     </div>
   );
 }
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    objet: '',
-    message: '',
-    // password: '',
-    // rePassword: '',
-  });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const [errors, setErrors] = useState({});
   const [statusMessage, setStatusMessage] = useState('');
 
-  const handleChange = (key, val) => {
-    setFormData((prev) => ({ ...prev, [key]: val }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Validation
-    // const newErrors = {};
-    // if (formData.password.length < 8) {
-    //   newErrors.password = 'Minimum 8 caractères';
-    // }
-    // if (formData.rePassword !== formData.password) {
-    //   newErrors.rePassword = 'Les mots de passe ne correspondent pas';
-    // }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    // Envoi EmailJS
+  const onSubmit = async (data) => {
     const templateParams = {
-      nom: formData.name,
-      email: formData.email,
-      objet: formData.objet,
-      message: formData.message,
+      nom: data.name,
+      email: data.email,
+      objet: data.objet,
+      message: data.message,
     };
 
     try {
       const result = await emailjs.send(
-        'service_ak3se6g', // ✅ Ton Service ID
-        'template_ariny4e', // ✅ Ton Template ID
+        'service_ak3se6g',
+        'template_ariny4e',
         templateParams,
-        'WvRKJxpdK5zGfFtID' // ✅ Ton Public Key
+        'WvRKJxpdK5zGfFtID'
       );
       console.log('SUCCESS!', result.text);
       setStatusMessage('Message envoyé avec succès 🎉');
-      // Reset form
-      handleReset();
+      reset();
     } catch (error) {
       console.error('FAILED...', error);
       setStatusMessage("Erreur lors de l'envoi du message ❌");
     }
-
-    setErrors({});
   };
 
   const handleReset = () => {
-    setFormData({
-      name: '',
-      email: '',
-      objet: '',
-      message: '',
-      // password: '',
-      // rePassword: '',
-    });
-    setErrors({});
+    reset();
     setStatusMessage('');
   };
 
@@ -158,52 +129,35 @@ export default function Contact() {
             Envoyez-nous un message
           </h2>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <ContactInput
               label="Nom"
-              value={formData.name}
-              onChange={(val) => handleChange('name', val)}
+              name="name"
+              register={register}
               required
+              error={errors.name}
             />
             <ContactInput
               label="Email"
               type="email"
-              value={formData.email}
-              onChange={(val) => handleChange('email', val)}
+              name="email"
+              register={register}
               required
+              error={errors.email}
             />
             <ContactInput
               label="Objet"
-              value={formData.objet}
-              onChange={(val) => handleChange('objet', val)}
+              name="objet"
+              register={register}
+              error={errors.objet}
             />
             <ContactTextArea
               label="Message"
-              value={formData.message}
-              onChange={(val) => handleChange('message', val)}
-            />
-
-            {/* <ContactInput
-              label="Mot de passe"
-              type="password"
-              value={formData.password}
-              onChange={(val) => handleChange('password', val)}
+              name="message"
+              register={register}
               required
+              error={errors.message}
             />
-            {errors.password && (
-              <span className="text-red-500 text-sm">{errors.password}</span>
-            )} */}
-{/* 
-            <ContactInput
-              label="Confirmer mot de passe"
-              type="password"
-              value={formData.rePassword}
-              onChange={(val) => handleChange('rePassword', val)}
-              required
-            />
-            {errors.rePassword && (
-              <span className="text-red-500 text-sm">{errors.rePassword}</span>
-            )} */}
 
             {statusMessage && (
               <p className="mt-4 text-center font-medium text-green-600 dark:text-green-400">
