@@ -1,27 +1,27 @@
-"use client"; // Indique que ce code s'exécute côté client
+"use client"; // Indique que ce fichier est un composant côté client
 
-import { useState } from "react"; // Import du hook useState depuis React (même s'il n'est pas utilisé dans ce fichier)
-import { ToastContainer } from "react-toastify"; // Import du composant pour afficher les notifications toast
-import "react-toastify/dist/ReactToastify.css"; // Import des styles CSS pour react-toastify
-import Stats from './Stats'; // Import du composant Stats
-import Agenda from "./Agenda"; // Import du composant Agenda
+import { useState } from "react"; // Import du hook useState (non utilisé ici, mais utile pour état dynamique)
+import { ToastContainer } from "react-toastify"; // Import du composant permettant d'afficher des notifications Toast
+import "react-toastify/dist/ReactToastify.css"; // Import du fichier CSS de react-toastify pour styliser les notifications
+import Stats from './Stats'; // Import du composant affichant les statistiques
+import Agenda from "./Agenda"; // Import du composant de l'agenda
 
-// Composant StatCard : affiche une carte de statistique avec un nombre et un libellé
+// Composant StatCard : carte affichant une statistique avec un nombre et une description
 const StatCard = ({ number, label }) => (
     <div className="flex flex-col items-center p-4 bg-white/10 backdrop-blur-sm 
                     rounded-lg shadow-lg hover:transform hover:-translate-y-1 
                     transition-all duration-300">
         <span className="text-3xl font-bold text-secondary dark:text-accent">
-            {number} {/* Affiche le nombre de la statistique */}
+            {number} {/* Affichage du chiffre de la statistique */}
         </span>
         <span className="text-sm text-gray-600 dark:text-gray-300">
-            {label} {/* Affiche le libellé de la statistique */}
+            {label} {/* Affichage de la description de la statistique */}
         </span>
     </div>
 );
 
-// Level 1: UI Components
-// Composant HeroTitle : affiche le titre principal de l'application
+// Niveau 1 : Composants UI (interface utilisateur)
+// Composant HeroTitle : titre principal de la page d'accueil
 const HeroTitle = () => (
     <h1 className="text-6xl md:text-8xl font-bold mb-8 
                    bg-clip-text text-transparent 
@@ -30,52 +30,52 @@ const HeroTitle = () => (
     </h1>
 );
 
-// Level 1: UI Components
-// Composant Description : affiche une description pour inciter l'utilisateur à découvrir les événements
+// Niveau 1 : Composants UI
+// Composant Description : texte descriptif sous le titre principal
 const Description = () => (
     <p className="text-xl md:text-3xl mb-12 text-gray-700 dark:text-gray-300 
                   max-w-3xl mx-auto leading-relaxed">
-        Découvrez et participez aux meilleurs événements professionnels et culturels
+        Découvrez et participez aux meilleurs événements professionnels et culturels.
     </p>
 );
 
-// Level 2: Section Components
-// Composant HeroSection : regroupe le titre, la description et les boutons d'action dans une section de présentation
+// Niveau 2 : Composants de Section
+// Composant HeroSection : regroupe le titre, la description et les boutons d'action
 const HeroSection = ({ onEventClick }) => (
     <div className="flex-1 flex flex-col justify-center">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
             <div className="text-center">
-                <HeroTitle /> {/* Affiche le titre principal */}
-                <Description /> {/* Affiche la description */}
-                <ActionButtons onEventClick={onEventClick} /> {/* Affiche les boutons d'action */}
+                <HeroTitle /> {/* Affichage du titre principal */}
+                <Description /> {/* Affichage de la description */}
+                <ActionButtons onEventClick={onEventClick} /> {/* Affichage des boutons d'action */}
             </div>
         </div>
     </div>
 );
 
-// Level 3: Content Components
-// Composant HomeContent : contient l'ensemble du contenu principal de la page d'accueil
+// Niveau 3 : Composants de Contenu
+// Composant HomeContent : section principale affichant le titre, la description et les statistiques
 const HomeContent = ({ onEventClick }) => (
     <div className="min-h-screen flex flex-col">
         <div className="flex-1 flex flex-col justify-center px-4 md:px-8 py-12">
             <div className="max-w-7xl mx-auto w-full">
                 <div className="text-center mb-16">
-                    <HeroTitle /> {/* Affiche le titre principal */}
-                    <Description /> {/* Affiche la description */}
-                    <ActionButtons onEventClick={onEventClick} /> {/* Affiche les boutons d'action */}
+                    <HeroTitle /> {/* Affichage du titre principal */}
+                    <Description /> {/* Affichage de la description */}
+                    <ActionButtons onEventClick={onEventClick} /> {/* Affichage des boutons d'action */}
                 </div>
-                <Stats /> {/* Affiche le composant des statistiques */}
+                <Stats /> {/* Affichage du composant des statistiques */}
             </div>
         </div>
     </div>
 );
 
-// Level 4: UI Elements
-// Composant ActionButtons : affiche les boutons permettant de naviguer vers la liste des événements ou la section de contact
+// Niveau 4 : Éléments UI
+// Composant ActionButtons : boutons permettant d'accéder aux événements ou à la page de contact
 const ActionButtons = ({ onEventClick }) => (
     <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
         <button
-            onClick={onEventClick} // Appelle la fonction onEventClick lors du clic
+            onClick={onEventClick} // Appelle la fonction de navigation vers la page des événements
             className="px-8 py-3 text-lg font-medium text-white 
                      bg-light-primary dark:bg-accent rounded-full 
                      hover:bg-light-primary/90 dark:hover:bg-accent/90"
@@ -83,7 +83,7 @@ const ActionButtons = ({ onEventClick }) => (
             Voir les Événements
         </button>
         <button
-            onClick={() => window.location.href = ''} // Redirige vers la section contact lors du clic
+            onClick={() => window.location.href = ''} // Redirige vers la section contact
             className="px-8 py-3 text-lg font-medium 
                      text-light-primary dark:text-accent border-2 
                      border-light-primary dark:border-accent rounded-full
@@ -94,24 +94,24 @@ const ActionButtons = ({ onEventClick }) => (
     </div>
 );
 
-// Composant principal Accueil : représente la page d'accueil de l'application
+// Composant principal Accueil : structure et affiche la page d'accueil de l'application
 export default function Accueil({ changePage }) {
-    // Fonction de gestion du clic sur le bouton "Voir les Événements"
+    // Fonction déclenchée lors du clic sur "Voir les Événements"
     const handleEventClick = () => {
-        changePage('agenda'); // Change la page affichée vers 'agenda'
+        changePage('agenda'); // Change la page active vers "agenda"
     };
 
     return (
         <main className="min-h-screen w-full">
-            {/* Background : un dégradé en arrière-plan */}
+            {/* Fond en dégradé pour l'arrière-plan */}
             <div className="fixed inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 -z-5" />
 
-            {/* Content : le contenu principal de la page */}
+            {/* Contenu principal de la page */}
             <div className={`relative z-10 transition-opacity duration-300`}>
-                <HomeContent onEventClick={handleEventClick} /> {/* Affiche le contenu principal */}
+                <HomeContent onEventClick={handleEventClick} /> {/* Affichage du contenu principal */}
             </div>
 
-            {/* ToastContainer : composant pour afficher les notifications toast */}
+            {/* ToastContainer : permet d'afficher des notifications toast */}
             <ToastContainer position="top-center" autoClose={3000} />
         </main>
     );
