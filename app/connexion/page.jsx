@@ -2,6 +2,7 @@
 
 import EspaceClient from "@/components/EspaceClient";
 export const metadata = {
+  metadataBase: new URL('https://acme.com'),
   title: 'GoEvent | connexion',
   description:
     'Connectez-vous à votre espace personnel pour gérer vos livres et accéder à toutes les fonctionnalités de biblio-app.',
@@ -9,7 +10,7 @@ export const metadata = {
     title: 'GoEvent | connexion',
     description:
       'Connectez-vous à votre espace personnel pour gérer vos livres et accéder à toutes les fonctionnalités de biblio-app.',
-    images: ['./react.webp'],
+    images: ['./logodusite.webp'],
   },
 };
 
