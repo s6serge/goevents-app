@@ -10,7 +10,7 @@ i18n
   .init({
     fallbackLng: 'en',
     debug: false,
-    ns: ['header','footer',],  //zone a modifier pour les autres parties du projet
+    ns: ['header', 'footer'], //zone a modifier pour les autres parties du projet
     preload: ['en', 'fr'], // differente langue a utilisee
     interpolation: {
       escapeValue: false, // React already does escaping
@@ -18,6 +18,7 @@ i18n
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
+    react: { useSuspense: false },
   });
 
 export default i18n;
