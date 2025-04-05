@@ -1,0 +1,13 @@
+Sitemap: https://localhost:3000/sitemap.xml
+User-agent: *
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+ 
+User-agent: Googlebot
+Allow: /public/
+Disallow: /private/
+ 
+# Autoriser tous les robots
+User-agent: *
+Allow: /
