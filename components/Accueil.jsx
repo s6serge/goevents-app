@@ -1,4 +1,5 @@
 "use client"; // Indique que ce fichier est un composant côté client
+import Link from 'next/link';
 
 import { useState } from "react"; // Import du hook useState (non utilisé ici, mais utile pour état dynamique)
 import { ToastContainer } from "react-toastify"; // Import du composant permettant d'afficher des notifications Toast
@@ -72,27 +73,59 @@ const HomeContent = ({ onEventClick }) => (
 
 // Niveau 4 : Éléments UI
 // Composant ActionButtons : boutons permettant d'accéder aux événements ou à la page de contact
-const ActionButtons = ({ onEventClick }) => (
-    <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-        <button
-            onClick={onEventClick} // Appelle la fonction de navigation vers la page des événements
-            className="px-8 py-3 text-lg font-medium text-white 
-                     bg-light-primary dark:bg-accent rounded-full 
-                     hover:bg-light-primary/90 dark:hover:bg-accent/90"
-        >
-            Voir les Événements
-        </button>
-        <button
-            onClick={() => window.location.href = ''} // Redirige vers la section contact
-            className="px-8 py-3 text-lg font-medium 
-                     text-light-primary dark:text-accent border-2 
-                     border-light-primary dark:border-accent rounded-full
-                     hover:bg-light-primary/10 dark:hover:bg-accent/10"
-        >
-            Nous Contacter
-        </button>
-    </div>
+const ActionButtons = () => (
+  <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+    <Link href="/agenda">
+      <button
+        className="px-8 py-3 text-lg font-medium text-white 
+                        bg-light-primary dark:bg-accent rounded-full 
+                        hover:bg-light-primary/90 dark:hover:bg-accent/90"
+      >
+        Voir les Événements
+      </button>
+    </Link>
+    <Link href="/envoicontact">
+      {' '}
+      {/* exemple avec ancre ou tu peux utiliser une vraie route */}
+      <button
+        className="px-8 py-3 text-lg font-medium 
+                        text-light-primary dark:text-accent border-2 
+                        border-light-primary dark:border-accent rounded-full
+                        hover:bg-light-primary/10 dark:hover:bg-accent/10"
+      >
+        Nous Contacter
+      </button>
+    </Link>
+  </div>
 );
+
+
+
+
+
+// const ActionButtons = ({ onEventClick }) => (
+//     <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+//         <button
+//             onClick={onEventClick} // Appelle la fonction de navigation vers la page des événements
+//             className="px-8 py-3 text-lg font-medium text-white
+//                      bg-light-primary dark:bg-accent rounded-full
+//                      hover:bg-light-primary/90 dark:hover:bg-accent/90"
+//         >
+//             Voir les Événements
+//         </button>
+//         <button
+//             onClick={() => window.location.href = ''} // Redirige vers la section contact
+//             className="px-8 py-3 text-lg font-medium
+//                      text-light-primary dark:text-accent border-2
+//                      border-light-primary dark:border-accent rounded-full
+//                      hover:bg-light-primary/10 dark:hover:bg-accent/10"
+//         >
+//             Nous Contacter
+//         </button>
+//     </div>
+// );
+
+
 
 // Composant principal Accueil : structure et affiche la page d'accueil de l'application
 export default function Accueil({ changePage }) {

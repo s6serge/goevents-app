@@ -1,0 +1,129 @@
+
+[
+  {
+    "id": 1,
+    "title": "Conférence sur l'intelligence artificielle",
+    "date": "2025-02-15",
+    "time": "10:00",
+    "description": "Rejoignez-nous pour une conférence captivante sur les dernières avancées de l'intelligence artificielle et ses applications dans différents secteurs.",
+    "image": "./photo/ai.webp",
+    "location": "Salle de conférence ABC, 123 Rue de l'Innovation, Paris, France"
+  },
+  {
+    "id": 2,
+    "title": "Atelier de développement web",
+    "date": "2025-02-17",
+    "time": "14:00",
+    "description": "Un atelier pratique où vous apprendrez les bases du développement web, du HTML au JavaScript, avec des experts du secteur.",
+    "image": "./photo/web.webp",
+    "location": "Bâtiment TechHub, 56 Rue des Startups, Lyon, France"
+  },
+  {
+    "id": 3,
+    "title": "Séminaire sur la gestion du stress",
+    "date": "2025-02-20",
+    "time": "09:00",
+    "description": "Découvrez des techniques éprouvées pour gérer le stress au quotidien et améliorer votre bien-être mental et physique.",
+    "image": "./photo/stress.webp",
+    "location": "Centre de Bien-être Zen, 14 Rue du Calme, Marseille, France"
+  },
+  {
+    "id": 4,
+    "title": "Table ronde sur la transition énergétique",
+    "date": "2025-02-22",
+    "time": "16:00",
+    "description": "Des experts discuteront des enjeux de la transition énergétique, des énergies renouvelables et des solutions pour un avenir plus vert.",
+    "image": "./photo/energie.webp",
+    "location": "Salle de conférence GreenTech, 89 Avenue du Développement Durable, Bordeaux, France"
+  },
+  {
+    "id": 5,
+    "title": "Webinaire sur les tendances du marketing digital",
+    "date": "2025-03-01",
+    "time": "11:00",
+    "description": "Apprenez les dernières tendances du marketing digital et comment les appliquer pour augmenter la visibilité de votre entreprise.",
+    "image": "./photo/marketing.webp",
+    "location": "En ligne (Zoom)"
+  },
+  {
+    "id": 6,
+    "title": "Salon de l'emploi et des opportunités de carrière",
+    "date": "2025-03-05",
+    "time": "10:00",
+    "description": "Venez rencontrer des recruteurs et découvrir des opportunités d'emploi dans divers secteurs d'activité.",
+    "image": "",
+    "location": "Parc des Expositions, Hall A, 45 Boulevard des Salons, Lille, France"
+  },
+  {
+    "id": 7,
+    "title": "Masterclass sur la photographie numérique",
+    "date": "2025-03-10",
+    "time": "15:00",
+    "description": "Un cours intensif pour améliorer vos compétences en photographie numérique et capturer des moments inoubliables.",
+    "image": "",
+    "location": "Studio Photo Pro, 28 Rue des Artistes, Paris, France"
+  },
+  {
+    "id": 8,
+    "title": "Conférence sur la cybersécurité",
+    "date": "2025-03-12",
+    "time": "14:00",
+    "description": "Assistez à une conférence informative sur les risques liés à la cybersécurité et les meilleures pratiques pour protéger vos données personnelles et professionnelles.",
+    "image": "",
+    "location": "Centre CyberTech, 67 Rue des Innovateurs, Nice, France"
+  },
+  {
+    "id": 9,
+    "title": "Exposition artistique de jeunes talents",
+    "date": "2025-03-14",
+    "time": "17:00",
+    "description": "Venez découvrir les œuvres de jeunes artistes locaux dans cette exposition mettant en avant la créativité contemporaine.",
+    "image": "",
+    "location": "Galerie des Artistes, 120 Boulevard de la Culture, Lyon, France"
+  },
+  {
+    "id": 10,
+    "title": "Hackathon sur l'innovation sociale",
+    "date": "2025-03-17",
+    "time": "09:00",
+    "description": "Participez à un hackathon où vous aurez l'occasion de travailler sur des solutions technologiques pour résoudre des problèmes sociaux.",
+    "image": "",
+    "location": "Co-working Space 2.0, 12 Rue de l'Innovation, Paris, France"
+  },
+  {
+    "id": 11,
+    "title": "Webinaire sur la gestion des finances personnelles",
+    "date": "2025-03-20",
+    "time": "18:00",
+    "description": "Un webinaire pour apprendre à gérer vos finances personnelles, économiser de l'argent et planifier votre avenir financier.",
+    "image": "",
+    "location": "En ligne (Google Meet)"
+  },
+  {
+    "id": 12,
+    "title": "Séminaire sur la santé mentale en entreprise",
+    "date": "2025-03-25",
+    "time": "11:00",
+    "description": "Rejoignez-nous pour discuter de la manière de promouvoir la santé mentale en entreprise et de prévenir les risques psychologiques.",
+    "image": "",
+    "location": "Bureau de l'Innovation, 34 Rue de la Santé, Toulouse, France"
+  },
+  {
+    "id": 13,
+    "title": "Festival de musique locale",
+    "date": "2025-03-28",
+    "time": "19:00",
+    "description": "Venez profiter d'une soirée de musique locale avec des performances de groupes et d'artistes de la région.",
+    "image": "",
+    "location": "Parc de la Musique, 250 Avenue des Concerts, Marseille, France"
+  },
+  {
+    "id": 14,
+    "title": "Forum sur la durabilité en entreprise",
+    "date": "2025-04-01",
+    "time": "10:00",
+    "description": "Un forum pour discuter des pratiques durables en entreprise et des stratégies pour réduire l'empreinte écologique.",
+    "image": "",
+    "location": "Centre d'Innovation Durable, 56 Rue Verte, Nantes, France"
+  }
+]
