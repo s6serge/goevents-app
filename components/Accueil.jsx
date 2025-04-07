@@ -73,52 +73,52 @@ const HomeContent = ({ onEventClick }) => (
 
 // Niveau 4 : Éléments UI
 // Composant ActionButtons : boutons permettant d'accéder aux événements ou à la page de contact
-const ActionButtons = () => (
-  <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-    <Link
-      href="/agenda"
-      className="px-8 py-3 text-lg font-medium text-white 
-                 bg-light-primary dark:bg-accent rounded-full 
-                 hover:bg-light-primary/90 dark:hover:bg-accent/90 text-center"
-    >
-      Voir les Événements
-    </Link>
-    <Link
-      href="/envoicontact"
-      className="px-8 py-3 text-lg font-medium 
-                 text-light-primary dark:text-accent border-2 
-                 border-light-primary dark:border-accent rounded-full
-                 hover:bg-light-primary/10 dark:hover:bg-accent/10 text-center"
-    >
-      Nous Contacter
-    </Link>
-  </div>
-);
-
-
 // const ActionButtons = () => (
 //   <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-//     <Link href="/agenda">
-//       <a
-//         className="px-8 py-3 text-lg font-medium text-white 
-//                    bg-light-primary dark:bg-accent rounded-full 
-//                    hover:bg-light-primary/90 dark:hover:bg-accent/90 text-center"
-//       >
-//         Voir les Événements
-//       </a>
+//     <Link
+//       href="/agenda"
+//       className="px-8 py-3 text-lg font-medium text-white 
+//                  bg-light-primary dark:bg-accent rounded-full 
+//                  hover:bg-light-primary/90 dark:hover:bg-accent/90 text-center"
+//     >
+//       Voir les Événements
 //     </Link>
-//     <Link href="/envoicontact">
-//       <a
-//         className="px-8 py-3 text-lg font-medium 
-//                    text-light-primary dark:text-accent border-2 
-//                    border-light-primary dark:border-accent rounded-full
-//                    hover:bg-light-primary/10 dark:hover:bg-accent/10 text-center"
-//       >
-//         Nous Contacter
-//       </a>
+//     <Link
+//       href="/envoicontact"
+//       className="px-8 py-3 text-lg font-medium 
+//                  text-light-primary dark:text-accent border-2 
+//                  border-light-primary dark:border-accent rounded-full
+//                  hover:bg-light-primary/10 dark:hover:bg-accent/10 text-center"
+//     >
+//       Nous Contacter
 //     </Link>
 //   </div>
 // );
+
+
+const ActionButtons = () => (
+  <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+    <Link href="/agenda" legacyBehavior>
+      <a
+        className="px-8 py-3 text-lg font-medium text-white 
+                   bg-light-primary dark:bg-accent rounded-full 
+                   hover:bg-light-primary/90 dark:hover:bg-accent/90 text-center"
+      >
+        Voir les Événements
+      </a>
+    </Link>
+    <Link href="/envoicontact" legacyBehavior>
+      <a
+        className="px-8 py-3 text-lg font-medium 
+                   text-light-primary dark:text-accent border-2 
+                   border-light-primary dark:border-accent rounded-full
+                   hover:bg-light-primary/10 dark:hover:bg-accent/10 text-center"
+      >
+        Nous Contacter
+      </a>
+    </Link>
+  </div>
+);
 
 
 
