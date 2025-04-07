@@ -121,33 +121,6 @@ const ActionButtons = () => (
 );
 
 
-
-
-
-// const ActionButtons = ({ onEventClick }) => (
-//     <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-//         <button
-//             onClick={onEventClick} // Appelle la fonction de navigation vers la page des événements
-//             className="px-8 py-3 text-lg font-medium text-white
-//                      bg-light-primary dark:bg-accent rounded-full
-//                      hover:bg-light-primary/90 dark:hover:bg-accent/90"
-//         >
-//             Voir les Événements
-//         </button>
-//         <button
-//             onClick={() => window.location.href = ''} // Redirige vers la section contact
-//             className="px-8 py-3 text-lg font-medium
-//                      text-light-primary dark:text-accent border-2
-//                      border-light-primary dark:border-accent rounded-full
-//                      hover:bg-light-primary/10 dark:hover:bg-accent/10"
-//         >
-//             Nous Contacter
-//         </button>
-//     </div>
-// );
-
-
-
 // Composant principal Accueil : structure et affiche la page d'accueil de l'application
 export default function Accueil({ changePage }) {
     // Fonction déclenchée lors du clic sur "Voir les Événements"
