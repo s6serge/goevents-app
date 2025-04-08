@@ -9,6 +9,7 @@ export const metadata = {
       'Bienvenue sur GoEvent, la plateforme idéale pour organiser et découvrir des événements.',
     images: ['./react.webp'],
   },
+  manifest: '/manifest.json',
 };
 
 export default function Home() {
