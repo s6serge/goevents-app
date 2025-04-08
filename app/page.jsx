@@ -1,4 +1,7 @@
 import Accueil from "@/components/Accueil";
+
+import InstallPrompt from '@/components/InstallPrompt';
+
 export const metadata = {
   title: 'GoEvent | Accueil',
   description:
@@ -14,7 +17,11 @@ export const metadata = {
 };
 
 export default function Home() {
-    return <Accueil />;
+  return (
+    <>
+      <Accueil />
+      <InstallPrompt />
+    </>
+  );
 }
-
 

@@ -1,4 +1,4 @@
-'use client';
+'use client'
 // Importation de la configuration de traduction si nécessaire
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider'; // Import du ThemeProvider créé
@@ -8,8 +8,10 @@ import './globals.css';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18next';
 
+
 // Chargement de la police Inter avec le sous-ensemble "latin"
 const inter = Inter({ subsets: ['latin'] });
+
 
 export default function RootLayout({ children }) {
   return (
@@ -24,6 +26,7 @@ export default function RootLayout({ children }) {
         <I18nextProvider i18n={i18n}>
           <ThemeProvider>
             <Header />
+         
             <main>{children}</main>
             <Footer />
           </ThemeProvider>

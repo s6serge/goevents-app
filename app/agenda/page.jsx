@@ -1,5 +1,5 @@
 
-
+import InstallPrompt from "@/components/InstallPrompt";
 import Agenda from "@/components/Agenda";
 export const metadata = {
   title: 'GoEvent | Agenda',
@@ -11,9 +11,15 @@ export const metadata = {
       'Consultez et gérez votre agenda pour ne manquer aucun événement important avec biblio-app.',
     images: ['./react.webp'],
   },
+  manifest: '/manifest.json',
 };
 
 
 export default function AgendaPage() {
-    return <Agenda />;
+  return (
+    <>
+      <Agenda />
+      <InstallPrompt />
+    </>
+  );
 } 

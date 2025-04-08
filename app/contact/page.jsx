@@ -1,5 +1,5 @@
 
-
+import InstallPrompt from '@/components/InstallPrompt';
 import Contact from "@/components/Contact";
 export const metadata = {
   title: 'GoEvent | Ajout-evenement',
@@ -11,8 +11,14 @@ export const metadata = {
       'Ajoutez facilement un nouvel événement à votre bibliothèque avec biblio-app.',
     images: ['./react.webp'],
   },
+  manifest: '/manifest.json',
 };
 
 export default function ContactPage() {
-    return <Contact />;
+    return (
+      <>
+        <Contact />
+        <InstallPrompt />
+      </>
+    );
 } 
