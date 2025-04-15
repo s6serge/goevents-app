@@ -1,4 +1,4 @@
-import Accueil from "@/components/Accueil";
+import Accueil from '@/components/Accueil';
 
 import InstallPrompt from '@/components/InstallPrompt';
 
@@ -10,7 +10,7 @@ export const metadata = {
     title: 'GoEvent | Accueil',
     description:
       'Bienvenue sur GoEvent, la plateforme idéale pour organiser et découvrir des événements.',
-    images: ['/icon512_maskable.png'],
+    images: ['./icon512_maskable.png'],
   },
   manifest: '/manifest.json',
 };
@@ -23,4 +23,3 @@ export default function Home() {
     </>
   );
 }
-
