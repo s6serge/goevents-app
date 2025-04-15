@@ -10,7 +10,7 @@ export const metadata = {
     title: 'GoEvent | Accueil',
     description:
       'Bienvenue sur GoEvent, la plateforme idéale pour organiser et découvrir des événements.',
-    images: ['./logodusite1111.webp'],
+    images: ['/logodusite1111.webp'],
   },
   manifest: '/manifest.json',
 };
